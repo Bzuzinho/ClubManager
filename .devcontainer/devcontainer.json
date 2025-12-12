@@ -1,0 +1,10 @@
+{
+  "name": "ClubManager Dev",
+  "image": "mcr.microsoft.com/devcontainers/php:1-8.3",
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "20"
+    }
+  },
+  "postCreateCommand": "sudo apt update && sudo apt install -y unzip"
+}
