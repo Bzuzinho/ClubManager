@@ -1,10 +1,11 @@
 {
   "name": "ClubManager Dev",
-  "image": "mcr.microsoft.com/devcontainers/php:1-8.3",
+  "image": "php:8.3-cli",
   "features": {
     "ghcr.io/devcontainers/features/node:1": {
       "version": "20"
     }
   },
-  "postCreateCommand": "sudo apt update && sudo apt install -y unzip libpq-dev && docker-php-ext-install pdo_pgsql"
+  "postCreateCommand": "apt-get update && apt-get install -y unzip libpq-dev git curl && docker-php-ext-install pdo_pgsql"
 }
+
