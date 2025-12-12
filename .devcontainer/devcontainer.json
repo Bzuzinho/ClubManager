@@ -6,5 +6,5 @@
       "version": "20"
     }
   },
-  "postCreateCommand": "sudo apt update && sudo apt install -y unzip"
+  "postCreateCommand": "sudo apt update && sudo apt install -y unzip libpq-dev && docker-php-ext-install pdo_pgsql"
 }
