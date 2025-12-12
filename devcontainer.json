@@ -4,7 +4,11 @@
   "features": {
     "ghcr.io/devcontainers/features/node:1": {
       "version": "20"
+    },
+    "ghcr.io/devcontainers/features/php:1": {
+      "extensions": ["pdo_pgsql", "pgsql"]
     }
   },
   "postCreateCommand": "sudo apt update && sudo apt install -y unzip"
 }
+
