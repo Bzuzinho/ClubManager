@@ -2,7 +2,7 @@ export default function Dashboard() {
   return (
     <div>
       {/* TÍTULO */}
-      <div style={{ marginBottom: 20 }}>
+      <div style={{ marginBottom: 10 }}>
         <h1 style={{ margin: 0 }}>Dashboard</h1>
         <p style={{ margin: "4px 0 0", color: "var(--text-muted)" }}>
           Visão geral do clube
@@ -14,13 +14,13 @@ export default function Dashboard() {
         style={{
           display: "grid",
           gridTemplateColumns: "repeat(5, minmax(0, 1fr))",
-          gap: 16,
-          marginBottom: 24,
+          gap: 8,
+          marginBottom: 8,
         }}
       >
         <div className="card">
           <div>Membros Ativos</div>
-          <strong style={{ fontSize: 20 }}>97</strong>
+          <strong style={{ fontSize: 200 }}>97</strong>
         </div>
 
         <div className="card">
