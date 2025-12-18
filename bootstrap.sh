@@ -51,16 +51,6 @@ php artisan key:generate --force
 composer require laravel/sanctum
 php artisan vendor:publish --provider="Laravel\Sanctum\SanctumServiceProvider" --force
 
-python3 - <<'PY'
-import pathlib, re
-p = pathlib.Path("config/cors.php")
-txt = p.read_text(encoding="utf-8")
-txt = re.sub(r"'paths'\s*=>\s*\[[^\]]*\]", "'paths' => ['api/*', 'sanctum/csrf-cookie']", txt, flags=re.S)
-txt = re.sub(r"'allowed_origins'\s*=>\s*\[[^\]]*\]", "'allowed_origins' => [env('FRONTEND_URL', 'http://localhost:5173')]", txt, flags=re.S)
-txt = re.sub(r"'allowed_headers'\s*=>\s*\[[^\]]*\]", "'allowed_headers' => ['*']", txt, flags=re.S)
-txt = re.sub(r"'allowed_methods'\s*=>\s*\[[^\]]*\]", "'allowed_methods' => ['*']", txt, flags=re.S)
-p.write_text(txt, encoding="utf-8")
-PY
 
 cp "$TPL/backend/9999_01_01_000001_add_role_to_users_table.php" database/migrations/9999_01_01_000001_add_role_to_users_table.php
 cp "$TPL/backend/AdminUserSeeder.php" database/seeders/AdminUserSeeder.php

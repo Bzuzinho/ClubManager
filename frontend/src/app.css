@@ -1,0 +1,4 @@
+/* app.css — neutro, não define layout nem cores */
+* {
+  box-sizing: border-box;
+}
