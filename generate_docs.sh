@@ -6,34 +6,114 @@
 
 set -euo pipefail
 
-# Detectar a raiz do repositório (assumindo que este script está na pasta `scripts/`)
-ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+# Detectar a raiz do repositório
+ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 # Directório onde a documentação será mantida
 DOCS_DIR="$ROOT_DIR/docs"
 
-# Directório de origem com documentação extra (modulos descompactados)
-# Ajuste este caminho conforme necessário.
-MODULES_SRC="$ROOT_DIR/Modulos/Gestao-main"
-
 # Criar pasta docs caso não exista
 mkdir -p "$DOCS_DIR"
 
-# Copiar todos os ficheiros Markdown, PDF e DOCX da pasta de módulos para `docs/`
-# Esta operação sobrescreve versões antigas, garantindo que a documentação está actualizada.
-find "$MODULES_SRC" -type f \( -iname "*.md" -o -iname "*.pdf" -o -iname "*.docx" \) -print0 \
+# Copiar ficheiros README existentes no projeto para docs/
+echo "A recolher documentação do projeto..."
+if [ -f "$ROOT_DIR/README.md" ]; then
+    cp "$ROOT_DIR/README.md" "$DOCS_DIR/"
+    echo "Copiado: README.md"
+fi
+
+if [ -f "$ROOT_DIR/backend/README.md" ]; then
+    cp "$ROOT_DIR/backend/README.md" "$DOCS_DIR/backend-README.md"
+    echo "Copiado: backend-README.md"
+fi
+
+if [ -f "$ROOT_DIR/frontend/README.md" ]; then
+    cp "$ROOT_DIR/frontend/README.md" "$DOCS_DIR/frontend-README.md"
+    echo "Copiado: frontend-README.md"
+fi
+
+# Procurar por outros ficheiros de documentação no projeto
+find "$ROOT_DIR" -maxdepth 3 -type f \( -iname "*.md" -o -iname "*.pdf" -o -iname "*.docx" \) \
+  ! -path "*/node_modules/*" ! -path "*/vendor/*" ! -path "*/docs/*" -print0 \
   | while IFS= read -r -d '' file; do
-    cp "$file" "$DOCS_DIR/"
-    echo "Copiado: $(basename "$file")"
+    filename="$(basename "$file")"
+    if [ ! -f "$DOCS_DIR/$filename" ]; then
+        cp "$file" "$DOCS_DIR/"
+        echo "Copiado: $filename"
+    fi
   done
 
-# Exemplo para gerar documentação do frontend (TypeScript) usando typedoc
-# Necessita de typedoc instalado globalmente (`npm install -g typedoc`).
-# typedoc --out "$DOCS_DIR/api/frontend" "$ROOT_DIR/src"
+# Gerar índice de documentação
+echo "A gerar índice de documentação..."
+cat > "$DOCS_DIR/INDEX.md" << 'EOF'
+# Índice da Documentação - ClubManager
 
-# Exemplo para gerar documentação do backend (PHP/Laravel) usando phpDocumentor
-# Necessita de phpDocumentor instalado (`composer require --dev phpdocumentor/phpdocumentor`).
-# ./vendor/bin/phpdoc -d "$ROOT_DIR/backend" -t "$DOCS_DIR/api/backend"
+## Documentação Geral
+- [README Principal](README.md)
+- [Backend README](backend-README.md)
+- [Frontend README](frontend-README.md)
+
+## Estrutura do Projeto
+
+### Backend (Laravel)
+- Framework: Laravel
+- Linguagem: PHP
+- Base de Dados: Configurada em `config/database.php`
+- API: Rotas em `routes/api.php`
+
+### Frontend (React + TypeScript)
+- Framework: React + TypeScript
+- Build: Vite
+- Configuração: `vite.config.ts`
+
+## Documentação do Código
+
+### Modelos (Backend)
+EOF
+
+# Listar modelos do backend
+if [ -d "$ROOT_DIR/backend/app/Models" ]; then
+    find "$ROOT_DIR/backend/app/Models" -name "*.php" -type f | while read -r model; do
+        modelname=$(basename "$model" .php)
+        echo "- $modelname" >> "$DOCS_DIR/INDEX.md"
+    done
+fi
+
+cat >> "$DOCS_DIR/INDEX.md" << 'EOF'
+
+### Controladores (Backend)
+EOF
+
+# Listar controladores do backend
+if [ -d "$ROOT_DIR/backend/app/Http/Controllers" ]; then
+    find "$ROOT_DIR/backend/app/Http/Controllers" -name "*.php" -type f | while read -r controller; do
+        controllername=$(basename "$controller" .php)
+        echo "- $controllername" >> "$DOCS_DIR/INDEX.md"
+    done
+fi
+
+cat >> "$DOCS_DIR/INDEX.md" << 'EOF'
+
+### Componentes (Frontend)
+EOF
+
+# Listar componentes principais do frontend
+if [ -d "$ROOT_DIR/frontend/src" ]; then
+    find "$ROOT_DIR/frontend/src" -name "*.tsx" -type f -not -path "*/node_modules/*" | while read -r component; do
+        componentname=$(basename "$component")
+        componentpath=$(echo "$component" | sed "s|$ROOT_DIR/frontend/src/||")
+        echo "- $componentpath" >> "$DOCS_DIR/INDEX.md"
+    done
+fi
+
+cat >> "$DOCS_DIR/INDEX.md" << 'EOF'
+
+## Última Actualização
+EOF
+
+echo "Data: $(date '+%Y-%m-%d %H:%M:%S')" >> "$DOCS_DIR/INDEX.md"
+
+echo "✅ Índice gerado em: $DOCS_DIR/INDEX.md"
 
 # Mensagem final
-echo "Documentação actualizada em: $DOCS_DIR"
+echo "📚 Documentação actualizada em: $DOCS_DIR"
