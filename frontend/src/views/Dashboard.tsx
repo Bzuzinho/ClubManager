@@ -2,11 +2,9 @@ export default function Dashboard() {
   return (
     <div>
       {/* TÍTULO */}
-      <div style={{ marginBottom: 10 }}>
-        <h1 style={{ margin: 0 }}>Dashboard</h1>
-        <p style={{ margin: "4px 0 0", color: "var(--text-muted)" }}>
-          Visão geral do clube
-        </p>
+      <div className="page-header page-header--stack">
+        <h1 className="page-title">Dashboard</h1>
+        <p className="page-subtitle">Visão geral do clube</p>
       </div>
 
       {/* KPI CARDS */}
@@ -14,13 +12,13 @@ export default function Dashboard() {
         style={{
           display: "grid",
           gridTemplateColumns: "repeat(5, minmax(0, 1fr))",
-          gap: 8,
-          marginBottom: 8,
+          gap: 15,
+          marginBottom: 15,
         }}
       >
         <div className="card">
           <div>Membros Ativos</div>
-          <strong style={{ fontSize: 200 }}>97</strong>
+          <strong style={{ fontSize: 20 }}>97</strong>
         </div>
 
         <div className="card">
@@ -49,8 +47,8 @@ export default function Dashboard() {
         style={{
           display: "grid",
           gridTemplateColumns: "2fr 1fr",
-          gap: 24,
-          marginBottom: 24,
+          gap: 15,
+          marginBottom: 15,
         }}
       >
         {/* PRÓXIMOS EVENTOS */}
@@ -62,8 +60,8 @@ export default function Dashboard() {
               background: "var(--bg-page)",
               border: "1px solid var(--border-subtle)",
               borderRadius: 10,
-              padding: 12,
-              marginBottom: 12,
+              padding: 15,
+              marginBottom: 15,
             }}
           >
             <strong>Prova de Teste</strong>

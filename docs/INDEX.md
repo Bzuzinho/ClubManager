@@ -21,9 +21,21 @@
 ## Documentação do Código
 
 ### Modelos (Backend)
+- Consentimento
+- MembroTipo
+- Membro
+- Atleta
+- Escalao
+- Utilizador
+- Pessoa
+- DadosDesportivos
+- TipoMembro
+- RelacaoPessoa
 - User
+- AtletaEscalao
 
 ### Controladores (Backend)
+- MemberController
 - AuthController
 - Controller
 
@@ -45,4 +57,4 @@
 - auth/RequireAuth.tsx
 
 ## Última Actualização
-Data: 2025-12-18 15:42:55
+Data: 2026-01-19 17:23:04

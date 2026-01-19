@@ -1,3 +1,7 @@
+/* =========================
+   LAYOUT BASE
+========================= */
+
 .app-shell {
   display: grid;
   grid-template-columns: 260px 1fr;
@@ -10,35 +14,118 @@
   background: var(--bg-page);
 }
 
-/* CARDS */
+/* =========================
+   PAGE HEADER (GLOBAL)
+========================= */
+
+/* Header base — páginas com ações (ex: Membros) */
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+/* Header empilhado — Dashboard */
+.page-header--stack {
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  text-align: left;
+  gap: 0px; /* 👈 CONTROLA A DISTÂNCIA ENTRE TÍTULO E SUBTÍTULO */
+}
+
+/* Título da página */
+.page-title {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.15;
+}
+
+/* Subtítulo da página */
+.page-subtitle {
+  margin: 2px;
+  font-size: 14px;
+  padding-bottom: 8px;
+  color: var(--text-muted);
+}
+
+/* =========================
+   PAGE CONTENT
+========================= */
+
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.page-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* =========================
+   CARDS
+========================= */
+
 .card {
   background: var(--bg-card);
   border: 1px solid var(--border-soft);
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-card);
-  padding: 12px 14px; /* cards mais “baixos” */
+  padding: 12px 14px;
+}
+
+/* =========================
+   GRID
+========================= */
+
+.grid {
+  display: grid;
+  gap: 16px;
+}
+
+.members-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+/* =========================
+   MEMBROS
+========================= */
+
+.member-name {
+  font-weight: 700;
+}
+
+.member-role {
+  font-size: 14px;
+  opacity: 0.7;
 }
 
 /* =========================
    SIDEBAR — SPARK STYLE
 ========================= */
+
 .spark-sidebar {
   width: 260px;
   background: var(--bg-surface);
-  border-right: 1px solid var(--border-soft); /* nada de linha preta */
+  border-right: 1px solid var(--border-soft);
   padding: 18px 16px;
   display: flex;
   flex-direction: column;
 }
 
-/* HEADER */
+/* Header do sidebar */
 .spark-sidebar__header {
   display: flex;
   align-items: center;
   gap: 12px;
   padding-bottom: 14px;
   margin-bottom: 14px;
-  border-bottom: 1px solid var(--border-soft); /* separador suave */
+  border-bottom: 1px solid var(--border-soft);
 }
 
 .spark-sidebar__logo {
@@ -60,7 +147,7 @@
   margin-top: 2px;
 }
 
-/* NAV */
+/* Navegação */
 .spark-sidebar__nav {
   display: flex;
   flex-direction: column;
@@ -93,18 +180,21 @@
   color: #fff;
 }
 
-/* BOTTOM */
+/* Rodapé do sidebar */
 .spark-sidebar__bottom {
   margin-top: auto;
   padding-top: 14px;
-  border-top: 1px solid var(--border-soft); /* separador suave */
+  border-top: 1px solid var(--border-soft);
 }
 
 .spark-sidebar__section {
   padding-top: 10px;
 }
 
-/* USER */
+/* =========================
+   UTILIZADOR
+========================= */
+
 .spark-user {
   display: flex;
   align-items: center;
@@ -136,7 +226,10 @@
   margin-top: 2px;
 }
 
-/* LOGOUT */
+/* =========================
+   LOGOUT
+========================= */
+
 .spark-logout {
   margin-top: 12px;
   width: 100%;
@@ -150,4 +243,125 @@
 
 .spark-logout:hover {
   background: #fff;
+}
+
+/* =========================
+   MEMBROS — SPARK STYLE
+========================= */
+
+.members-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+
+.members-header-actions {
+  display: flex;
+  gap: 10px;
+}
+
+/* Filtros */
+.members-filters {
+  display: grid;
+  grid-template-columns: 1fr 200px 200px;
+  gap: 12px;
+  align-items: center;
+}
+
+.members-search {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--border-soft);
+  border-radius: 10px;
+  font-size: 14px;
+}
+
+.members-select {
+  padding: 10px 12px;
+  border: 1px solid var(--border-soft);
+  border-radius: 10px;
+  font-size: 14px;
+  background: #fff;
+}
+
+/* Grid */
+.members-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+/* Card de membro */
+.member-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  position: relative;
+}
+
+/* Avatar */
+.member-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  background: var(--primary-soft);
+  color: var(--primary);
+  font-weight: 600;
+  display: grid;
+  place-items: center;
+  font-size: 14px;
+}
+
+/* Info */
+.member-info {
+  flex: 1;
+}
+
+.member-name {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.member-number {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.member-badges {
+  display: flex;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+/* Badges */
+.badge {
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: var(--bg-page);
+  border: 1px solid var(--border-soft);
+}
+
+.badge.success {
+  background: #e7f7ef;
+  color: #118a52;
+  border-color: #bfead6;
+}
+
+/* Ações */
+.member-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.icon-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  opacity: 0.6;
+}
+
+.icon-btn:hover {
+  opacity: 1;
 }
