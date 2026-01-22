@@ -4,32 +4,27 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Escalao extends Model
+class Modalidade extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
-    protected $table = 'escaloes';
+    protected $table = 'modalidades';
 
     protected $fillable = [
         'nome',
         'codigo',
-        'idade_minima',
-        'idade_maxima',
-        'ano_nascimento_inicio',
-        'ano_nascimento_fim',
-        'genero',
         'descricao',
-        'ativo',
+        'icone',
+        'cor',
+        'ativa',
         'ordem',
+        'observacoes',
     ];
 
     protected $casts = [
-        'idade_minima' => 'integer',
-        'idade_maxima' => 'integer',
-        'ano_nascimento_inicio' => 'integer',
-        'ano_nascimento_fim' => 'integer',
-        'ativo' => 'boolean',
+        'ativa' => 'boolean',
         'ordem' => 'integer',
     ];
 
@@ -42,12 +37,17 @@ class Escalao extends Model
         return $this->hasMany(Equipa::class);
     }
 
+    public function competicoes()
+    {
+        return $this->hasMany(Competicao::class);
+    }
+
     /* =====================
      * SCOPES
      * ===================== */
 
-    public function scopeAtivos($query)
+    public function scopeAtivas($query)
     {
-        return $query->where('ativo', true)->orderBy('ordem');
+        return $query->where('ativa', true)->orderBy('ordem');
     }
 }

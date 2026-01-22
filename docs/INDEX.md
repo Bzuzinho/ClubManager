@@ -21,22 +21,54 @@
 ## Documentação do Código
 
 ### Modelos (Backend)
+- TipoDocumento
 - Consentimento
 - MembroTipo
+- Equipa
+- ContaBancaria
+- PresencaTreino
+- Modalidade
 - Membro
 - Atleta
 - Escalao
+- InscricaoEvento
+- TipoEvento
 - Utilizador
+- HistoricoEstado
+- Convocatoria
+- Competicao
+- Pagamento
 - Pessoa
+- CentroCusto
+- Fatura
 - DadosDesportivos
 - TipoMembro
 - RelacaoPessoa
+- MetodoPagamento
+- MovimentoFinanceiro
+- DadosDesportivosAtleta
 - User
+- Documento
+- Evento
+- ItemFatura
+- EncarregadoEducacao
 - AtletaEscalao
+- CategoriaMovimento
+- Treino
 
 ### Controladores (Backend)
+- EventoController
+- EquipaController
+- FaturaController
+- DocumentoController
+- MembroController
+- AtletaController
 - MemberController
+- CompeticaoController
 - AuthController
+- TreinoController
+- PagamentoController
+- PessoaController
 - Controller
 
 ### Componentes (Frontend)
@@ -57,4 +89,4 @@
 - auth/RequireAuth.tsx
 
 ## Última Actualização
-Data: 2026-01-19 17:23:04
+Data: 2026-01-22 10:45:57

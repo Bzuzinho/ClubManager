@@ -5,31 +5,29 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Escalao extends Model
+class TipoDocumento extends Model
 {
     use HasFactory;
 
-    protected $table = 'escaloes';
+    protected $table = 'tipos_documento';
 
     protected $fillable = [
         'nome',
         'codigo',
-        'idade_minima',
-        'idade_maxima',
-        'ano_nascimento_inicio',
-        'ano_nascimento_fim',
-        'genero',
         'descricao',
+        'obrigatorio',
+        'tem_validade',
+        'validade_meses',
+        'aplicavel_a',
         'ativo',
         'ordem',
     ];
 
     protected $casts = [
-        'idade_minima' => 'integer',
-        'idade_maxima' => 'integer',
-        'ano_nascimento_inicio' => 'integer',
-        'ano_nascimento_fim' => 'integer',
+        'obrigatorio' => 'boolean',
+        'tem_validade' => 'boolean',
         'ativo' => 'boolean',
+        'validade_meses' => 'integer',
         'ordem' => 'integer',
     ];
 
@@ -37,9 +35,9 @@ class Escalao extends Model
      * RELAÇÕES
      * ===================== */
 
-    public function equipas()
+    public function documentos()
     {
-        return $this->hasMany(Equipa::class);
+        return $this->hasMany(Documento::class);
     }
 
     /* =====================
@@ -49,5 +47,10 @@ class Escalao extends Model
     public function scopeAtivos($query)
     {
         return $query->where('ativo', true)->orderBy('ordem');
+    }
+
+    public function scopeObrigatorios($query)
+    {
+        return $query->where('obrigatorio', true);
     }
 }

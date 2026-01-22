@@ -5,30 +5,25 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Escalao extends Model
+class TipoEvento extends Model
 {
     use HasFactory;
 
-    protected $table = 'escaloes';
+    protected $table = 'tipos_evento';
 
     protected $fillable = [
         'nome',
         'codigo',
-        'idade_minima',
-        'idade_maxima',
-        'ano_nascimento_inicio',
-        'ano_nascimento_fim',
-        'genero',
         'descricao',
+        'cor',
+        'icone',
+        'requer_inscricao',
         'ativo',
         'ordem',
     ];
 
     protected $casts = [
-        'idade_minima' => 'integer',
-        'idade_maxima' => 'integer',
-        'ano_nascimento_inicio' => 'integer',
-        'ano_nascimento_fim' => 'integer',
+        'requer_inscricao' => 'boolean',
         'ativo' => 'boolean',
         'ordem' => 'integer',
     ];
@@ -37,9 +32,9 @@ class Escalao extends Model
      * RELAÇÕES
      * ===================== */
 
-    public function equipas()
+    public function eventos()
     {
-        return $this->hasMany(Equipa::class);
+        return $this->hasMany(Evento::class);
     }
 
     /* =====================

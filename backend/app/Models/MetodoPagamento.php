@@ -5,30 +5,23 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Escalao extends Model
+class MetodoPagamento extends Model
 {
     use HasFactory;
 
-    protected $table = 'escaloes';
+    protected $table = 'metodos_pagamento';
 
     protected $fillable = [
         'nome',
         'codigo',
-        'idade_minima',
-        'idade_maxima',
-        'ano_nascimento_inicio',
-        'ano_nascimento_fim',
-        'genero',
         'descricao',
+        'requer_comprovativo',
         'ativo',
         'ordem',
     ];
 
     protected $casts = [
-        'idade_minima' => 'integer',
-        'idade_maxima' => 'integer',
-        'ano_nascimento_inicio' => 'integer',
-        'ano_nascimento_fim' => 'integer',
+        'requer_comprovativo' => 'boolean',
         'ativo' => 'boolean',
         'ordem' => 'integer',
     ];
@@ -37,9 +30,9 @@ class Escalao extends Model
      * RELAÇÕES
      * ===================== */
 
-    public function equipas()
+    public function pagamentos()
     {
-        return $this->hasMany(Equipa::class);
+        return $this->hasMany(Pagamento::class);
     }
 
     /* =====================

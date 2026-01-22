@@ -5,30 +5,23 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Escalao extends Model
+class CategoriaMovimento extends Model
 {
     use HasFactory;
 
-    protected $table = 'escaloes';
+    protected $table = 'categorias_movimento';
 
     protected $fillable = [
         'nome',
         'codigo',
-        'idade_minima',
-        'idade_maxima',
-        'ano_nascimento_inicio',
-        'ano_nascimento_fim',
-        'genero',
+        'tipo',
         'descricao',
+        'cor',
         'ativo',
         'ordem',
     ];
 
     protected $casts = [
-        'idade_minima' => 'integer',
-        'idade_maxima' => 'integer',
-        'ano_nascimento_inicio' => 'integer',
-        'ano_nascimento_fim' => 'integer',
         'ativo' => 'boolean',
         'ordem' => 'integer',
     ];
@@ -37,17 +30,27 @@ class Escalao extends Model
      * RELAÇÕES
      * ===================== */
 
-    public function equipas()
+    public function movimentos()
     {
-        return $this->hasMany(Equipa::class);
+        return $this->hasMany(MovimentoFinanceiro::class);
     }
 
     /* =====================
      * SCOPES
      * ===================== */
 
-    public function scopeAtivos($query)
+    public function scopeAtivas($query)
     {
         return $query->where('ativo', true)->orderBy('ordem');
+    }
+
+    public function scopeReceitas($query)
+    {
+        return $query->where('tipo', 'receita');
+    }
+
+    public function scopeDespesas($query)
+    {
+        return $query->where('tipo', 'despesa');
     }
 }

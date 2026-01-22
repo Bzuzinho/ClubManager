@@ -2,25 +2,37 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class RelacaoPessoa extends Model
 {
-    protected $table = 'relacoes_pessoas';
+    use HasFactory;
 
-    protected $guarded = [];
+    protected $table = 'relacoes_pessoa';
 
-    protected $dates = [
-        'data_inicio',
-        'data_fim',
+    protected $fillable = [
+        'pessoa_origem_id',
+        'pessoa_destino_id',
+        'tipo_relacao',
+        'observacoes',
     ];
 
-    public function origem()
+    protected $casts = [
+        'pessoa_origem_id' => 'integer',
+        'pessoa_destino_id' => 'integer',
+    ];
+
+    /* =====================
+     * RELAÇÕES
+     * ===================== */
+
+    public function pessoaOrigem()
     {
         return $this->belongsTo(Pessoa::class, 'pessoa_origem_id');
     }
 
-    public function destino()
+    public function pessoaDestino()
     {
         return $this->belongsTo(Pessoa::class, 'pessoa_destino_id');
     }
