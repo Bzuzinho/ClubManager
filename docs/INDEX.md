@@ -67,6 +67,7 @@
 - CompeticaoController
 - AuthController
 - TreinoController
+- TipoMembroController
 - PagamentoController
 - PessoaController
 - Controller
@@ -76,6 +77,9 @@
 - views/Login.tsx
 - router/index.tsx
 - router/router.tsx
+- components/Modal.tsx
+- components/ConfirmDialog.tsx
+- components/Toast.tsx
 - main.tsx
 - App.tsx
 - layouts/DashboardLayout.tsx
@@ -84,9 +88,11 @@
 - layouts/TopBar.tsx
 - modules/sports/Sports.tsx
 - modules/events/Events.tsx
+- modules/members/MemberForm.tsx
 - modules/members/Members.tsx
+- modules/members/MemberDetails.tsx
 - modules/financial/Financial.tsx
 - auth/RequireAuth.tsx
 
 ## Última Actualização
-Data: 2026-01-22 10:52:51
+Data: 2026-01-22 11:05:45

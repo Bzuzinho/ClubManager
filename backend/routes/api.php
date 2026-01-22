@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\PessoaController;
 use App\Http\Controllers\MembroController;
+use App\Http\Controllers\TipoMembroController;
 use App\Http\Controllers\AtletaController;
 use App\Http\Controllers\EquipaController;
 use App\Http\Controllers\TreinoController;
@@ -36,6 +37,10 @@ Route::middleware('auth:sanctum')->group(function () {
     // Membros
     Route::apiResource('membros', MembroController::class);
     Route::put('membros/{id}/tipos', [MembroController::class, 'updateTipos']);
+
+    // Tipos de Membro
+    Route::get('tipos-membro', [TipoMembroController::class, 'index']);
+    Route::get('tipos-membro/{id}', [TipoMembroController::class, 'show']);
 
     // Atletas
     Route::apiResource('atletas', AtletaController::class);
