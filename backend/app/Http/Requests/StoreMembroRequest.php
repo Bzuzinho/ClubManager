@@ -1,0 +1,53 @@
+<?php
+
+namespace App\Http\Requests;
+
+use Illuminate\Foundation\Http\FormRequest;
+
+class StoreMembroRequest extends FormRequest
+{
+    /**
+     * Determine if the user is authorized to make this request.
+     */
+    public function authorize(): bool
+    {
+        return true;
+    }
+
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
+     */
+    public function rules(): array
+    {
+        return [
+            'pessoa_id' => 'required|exists:pessoas,id',
+            'numero_socio' => 'nullable|string|max:50|unique:membros,numero_socio',
+            'estado' => 'required|in:ativo,inativo,pendente,suspenso',
+            'data_inscricao' => 'nullable|date',
+            'data_inicio' => 'nullable|date',
+            'data_fim' => 'nullable|date',
+            'motivo_inativacao' => 'nullable|string',
+            'observacoes' => 'nullable|string',
+            'tipos' => 'required|array|min:1',
+            'tipos.*.tipo_membro_id' => 'required|exists:tipos_membro,id',
+            'tipos.*.data_inicio' => 'nullable|date',
+            'tipos.*.ativo' => 'boolean',
+        ];
+    }
+
+    /**
+     * Get custom messages for validator errors.
+     */
+    public function messages(): array
+    {
+        return [
+            'pessoa_id.required' => 'A pessoa é obrigatória',
+            'pessoa_id.exists' => 'Pessoa não encontrada',
+            'estado.required' => 'O estado é obrigatório',
+            'tipos.required' => 'Pelo menos um tipo de membro é obrigatório',
+            'tipos.*.tipo_membro_id.exists' => 'Tipo de membro inválido',
+        ];
+    }
+}

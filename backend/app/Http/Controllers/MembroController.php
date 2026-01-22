@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Membro;
+use App\Http\Requests\StoreMembroRequest;
+use App\Http\Requests\UpdateMembroRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -52,22 +54,9 @@ class MembroController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreMembroRequest $request)
     {
-        $validated = $request->validate([
-            'pessoa_id' => 'required|exists:pessoas,id',
-            'numero_socio' => 'nullable|string|max:50|unique:membros,numero_socio',
-            'estado' => 'required|in:ativo,inativo,pendente,suspenso',
-            'data_inscricao' => 'nullable|date',
-            'data_inicio' => 'nullable|date',
-            'data_fim' => 'nullable|date',
-            'motivo_inativacao' => 'nullable|string',
-            'observacoes' => 'nullable|string',
-            'tipos' => 'required|array',
-            'tipos.*.tipo_membro_id' => 'required|exists:tipos_membro,id',
-            'tipos.*.data_inicio' => 'nullable|date',
-            'tipos.*.ativo' => 'boolean',
-        ]);
+        $validated = $request->validated();
 
         DB::beginTransaction();
         try {
@@ -126,22 +115,11 @@ class MembroController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateMembroRequest $request, string $id)
     {
         $membro = Membro::findOrFail($id);
 
-        $validated = $request->validate([
-            'pessoa_id' => 'required|exists:pessoas,id',
-            'numero_socio' => 'nullable|string|max:50|unique:membros,numero_socio,' . $id,
-            'estado' => 'required|in:ativo,inativo,pendente,suspenso',
-            'data_inscricao' => 'nullable|date',
-            'data_inicio' => 'nullable|date',
-            'data_fim' => 'nullable|date',
-            'motivo_inativacao' => 'nullable|string',
-            'observacoes' => 'nullable|string',
-        ]);
-
-        $membro->update($validated);
+        $membro->update($request->validated());
 
         return response()->json([
             'message' => 'Membro atualizado com sucesso',

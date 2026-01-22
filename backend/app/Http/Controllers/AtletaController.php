@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Atleta;
 use App\Models\Membro;
+use App\Http\Requests\StoreAtletaRequest;
+use App\Http\Requests\UpdateAtletaRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -52,25 +54,9 @@ class AtletaController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreAtletaRequest $request)
     {
-        $validated = $request->validate([
-            'membro_id' => 'required|exists:membros,id',
-            'ativo' => 'boolean',
-            'numero_camisola' => 'nullable|integer',
-            'tamanho_equipamento' => 'nullable|string|max:10',
-            'altura' => 'nullable|numeric|min:0',
-            'peso' => 'nullable|numeric|min:0',
-            'pe_dominante' => 'nullable|in:direito,esquerdo,ambidestro',
-            'posicao_preferida' => 'nullable|string|max:50',
-            'observacoes_medicas' => 'nullable|string',
-            'observacoes' => 'nullable|string',
-            'equipas' => 'nullable|array',
-            'equipas.*.equipa_id' => 'required|exists:equipas,id',
-            'equipas.*.numero_camisola' => 'nullable|integer',
-            'equipas.*.posicao' => 'nullable|string|max:50',
-            'equipas.*.titular' => 'boolean',
-        ]);
+        $validated = $request->validated();
 
         DB::beginTransaction();
         try {
@@ -127,24 +113,11 @@ class AtletaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateAtletaRequest $request, string $id)
     {
         $atleta = Atleta::findOrFail($id);
 
-        $validated = $request->validate([
-            'membro_id' => 'required|exists:membros,id',
-            'ativo' => 'boolean',
-            'numero_camisola' => 'nullable|integer',
-            'tamanho_equipamento' => 'nullable|string|max:10',
-            'altura' => 'nullable|numeric|min:0',
-            'peso' => 'nullable|numeric|min:0',
-            'pe_dominante' => 'nullable|in:direito,esquerdo,ambidestro',
-            'posicao_preferida' => 'nullable|string|max:50',
-            'observacoes_medicas' => 'nullable|string',
-            'observacoes' => 'nullable|string',
-        ]);
-
-        $atleta->update($validated);
+        $atleta->update($request->validated());
 
         return response()->json([
             'message' => 'Atleta atualizado com sucesso',
