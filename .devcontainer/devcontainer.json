@@ -1,12 +1,24 @@
 {
   "name": "ClubManager Dev",
-  "image": "php:8.3-cli",
+  "image": "mcr.microsoft.com/devcontainers/php:1-8.3",
   "features": {
     "ghcr.io/devcontainers/features/node:1": {
-      "version": "20"
+      "version": "20",
+      "installYarnUsingApt": false
     }
   },
-  "postCreateCommand": "apt-get update && apt-get install -y unzip git curl libpq-dev && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && docker-php-ext-install pdo_pgsql"
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "php.validate.executablePath": "/usr/local/bin/php",
+        "files.watcherExclude": {
+          "**/vendor/**": true,
+          "**/node_modules/**": true,
+          "**/storage/**": true
+        }
+      }
+    }
+  },
+  "forwardPorts": [8000, 5173],
+  "postCreateCommand": "composer --version || (curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer)"
 }
-
-

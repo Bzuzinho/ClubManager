@@ -147,4 +147,4 @@
 - auth/RequireAuth.tsx
 
 ## Última Actualização
-Data: 2026-01-26 16:12:57
+Data: 2026-01-26 17:50:43
