@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use App\Models\Traits\HasClubScope;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Pagamento extends Model
 {
-    use HasFactory;
+    use HasFactory, HasClubScope;
 
     protected $table = 'pagamentos';
 

@@ -7,6 +7,7 @@ import { router } from "./router";
 import "./styles/spark-tokens.css";
 import "./styles/spark-base.css";
 import "./styles/spark-layout.css";
+import "./styles/design-system.css";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>

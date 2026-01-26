@@ -1,52 +1,166 @@
+# ClubManager Backend - Laravel API
+
+> **⚠️ IMPORTANTE:** Todo desenvolvimento novo deve usar a **API v2** (`/api/v2/*`).  
+> Código legacy mantido apenas para compatibilidade. Ver [VERSIONING.md](../docs/VERSIONING.md).
+
+---
+
+## Stack Tecnológica
+
+- **Laravel** 12.0
+- **PHP** 8.2+
+- **Sanctum** 4.2 (autenticação API)
+- **Spatie Permission** 6.24 (roles & permissions)
+- **SQLite** (dev) / **MySQL** (produção)
+
+---
+
+## Setup Rápido
+
+```bash
+# Instalar dependências
+composer install
+
+# Copiar .env
+cp .env.example .env
+
+# Gerar chave
+php artisan key:generate
+
+# Migrations + Seeders
+php artisan migrate --seed
+
+# Iniciar servidor
+php artisan serve
+```
+
+---
+
+## Arquitetura
+
+### Nova Arquitetura (V2) ✅
+
+**Usar esta estrutura para todo desenvolvimento novo:**
+
+```
+app/
+├── Http/
+│   ├── Controllers/Api/     # Controllers v2
+│   ├── Middleware/          # EnsureClubContext
+│   └── Resources/           # API Resources (criar aqui)
+├── Models/
+│   ├── Scopes/              # ClubScope (tenancy)
+│   └── Traits/              # HasClubScope
+├── Services/                # Lógica de negócio
+│   ├── Tenancy/
+│   ├── Membros/
+│   └── Financeiro/
+└── Policies/                # Autorização (criar aqui)
+```
+
+**Endpoints v2:** `/api/v2/*`  
+**Middleware obrigatório:** `['auth:sanctum', 'ensure.club.context']`
+
+### Código Legacy ⚠️
+
+**NÃO desenvolver aqui:**
+
+```
+app/Http/Controllers/*Controller.php  # Controllers legacy
+routes/api.php (endpoints sem /v2/)   # Rotas legacy
+```
+
+---
+
+## Regras de Desenvolvimento
+
+### 1. Multi-Clube (Tenancy)
+
+**Todos os models operacionais usam `HasClubScope`:**
+
+```php
+use App\Models\Traits\HasClubScope;
+
+class Membro extends Model
+{
+    use HasClubScope;  // Filtra automaticamente por club_id
+}
+```
+
+**Para queries sem scope (admin):**
+```php
+Membro::allClubs()->get();  // Todos os clubes
+Membro::forClub($clubId)->get();  // Clube específico
+```
+
+### 2. API Resources Obrigatórias
+
+**❌ NUNCA fazer:**
+```php
+return response()->json($membro);  // Expõe estrutura interna
+```
+
+**✅ SEMPRE fazer:**
+```php
+return new MembroResource($membro);  // Formato normalizado
+```
+
+### 3. Autorização com Policies
+
+```php
+// No controller
+$this->authorize('viewAny', Membro::class);
+```
+
+### 4. SoftDeletes APENAS em Configs
+
+**❌ NÃO usar em:** Membro, Fatura, Pagamento, Pessoa, Atleta, Resultado, Presenca  
+**✅ USAR em:** Templates, Campanhas (administráveis)
+
+**Controlar com estados:**
+```php
+$membro->estado = 'inativo';  // Não usar delete()
+$fatura->status_cache = 'cancelado';  // Não usar delete()
+```
+
+---
+
+## Scripts Composer
+
+```bash
+composer setup    # Setup completo
+composer dev      # Servidor + queue + logs + vite
+composer test     # Testes PHPUnit
+```
+
+---
+
+## Estrutura de Testes
+
+```bash
+tests/
+├── Feature/          # Testes de controllers
+├── Unit/             # Testes de services/models
+└── TestCase.php
+```
+
+**Executar testes:**
+```bash
+php artisan test
+php artisan test --filter=MembroServiceTest
+```
+
+---
+
+## Documentação
+
+- **[ESTADO_ATUAL_DO_SISTEMA.md](../docs/ESTADO_ATUAL_DO_SISTEMA.md)** - Estado completo
+- **[VERSIONING.md](../docs/VERSIONING.md)** - Separação v2 vs legacy
+- **[ClubManager_SPEC_DEFINITIVA_Copilot_Rewrite.md](../docs/ClubManager_SPEC_DEFINITIVA_Copilot_Rewrite.md)** - Especificação técnica
+
+---
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
-
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
-
-## About Laravel
-
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
-
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
-
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
-
-## Learning Laravel
-
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
-
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
 
 In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
 

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\TipoMembro;
+use App\Models\TipoUtilizador;
 use Illuminate\Http\Request;
 
 class TipoMembroController extends Controller
@@ -12,7 +12,7 @@ class TipoMembroController extends Controller
      */
     public function index()
     {
-        $tipos = TipoMembro::orderBy('nome')->get();
+        $tipos = TipoUtilizador::orderBy('nome')->get();
         
         return response()->json([
             'success' => true,
@@ -25,7 +25,7 @@ class TipoMembroController extends Controller
      */
     public function show($id)
     {
-        $tipo = TipoMembro::findOrFail($id);
+        $tipo = TipoUtilizador::findOrFail($id);
         
         return response()->json([
             'success' => true,

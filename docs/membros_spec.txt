@@ -1,0 +1,582 @@
+Ficha Utilizador:
+Deve ser uma página que os administradores podem consultar e editar todos os campos
+Deve ser uma página que pode ser acedida pelos Encarregados de educação
+No campo onde aparece o “educando”, quando se clica nele, deve abrir a ficha do educando,
+dando acesso ao EE de alterar ou consultar todos os dados ( que um utilizador normal sem ser
+admin poderia alterar)
+Deve ser uma página que terá 4 separadores ( Pessoal, Financeiro, Desportivos, Configuração):
+Separador 1 - Pessoal:
+
+Se o campo “menor” for positivo deve aparecer para escolher o campo “encarregado_educacao” de onde
+será escolhido um utilizador já existente com o tipo de “tipo_membro” “Encarregado de Educação”, caso
+contrario deve ficar escondido. O utilizador que for escolhido para este campo de
+“encarregado_educação” de herdar para o seu campo “educando” o utilizador que o adicionou.
+​
+Se o campo “menor” for negativo e o campo “tipo_membro” tiver um tipo “encarregado_educacao” deve
+mostrar o campo “educando” para poder ser escolhido um utilizador que tenha o campo “menor” positivo.
+Se o campo “tipo_membro” tiver numa das opções escolhidas o tipo “atleta”, deve colocar o separador
+“Desportivo” visivel, caso contrário deve estar escondido.
+
+​
+Campos:
+
+Campo (slug)
+
+Legenda
+
+Tipo de Campo
+
+Relação
+
+foto_perfil
+
+Foto
+
+Imagem
+
+Único
+
+nome_completo
+
+Nome do
+utilizador/Atleta
+
+Texto
+
+Único
+
+data_nascimento
+
+Data Nascimento
+
+Selecção de
+data
+
+Único
+
+nif
+
+NIF
+
+Número
+
+Único
+
+cc
+
+Cartão de cidadão
+
+Número
+
+Único
+
+morada
+
+Morada
+
+Texto
+
+Único
+
+codigo_postal
+
+Código Postal
+
+Texto
+
+Único
+
+localidade
+
+Localidade
+
+Texto
+
+Único
+
+nacionalidade
+
+Nacionalidade
+
+Texto
+
+Único
+
+estado_civil
+
+Estado Civil
+
+Texto
+
+Único
+
+ocupacao
+
+Ocupação
+
+Texto
+
+Único
+
+empresa
+
+Empresa
+
+Texto
+
+Único
+
+escola
+
+Escola
+
+Texto
+
+Único
+
+menor
+
+Menor
+
+Verdadeiro /
+Falso
+
+Sim ou Não
+
+sexo
+
+Sexo
+
+Botão de opção
+
+Masculino ou
+Feminino
+
+numero_irmaos
+
+Nº de Irmãos
+
+Número
+
+Único
+
+contacto
+
+Contacto
+
+Número
+
+Único
+
+email_secundario
+
+Email
+
+Email
+
+Único
+
+encarregado_educaca
+o
+
+Encarregado de
+Educação
+
+Utilizador
+
+Pode ter mais
+do que um
+
+tipo_membro
+
+Tipo de Membro
+
+Selecção
+
+Pode ter mais
+do que um
+
+estado
+
+Estado
+
+Botão de opção
+
+Ativo, Inativo,
+Suspenso
+
+contacto_telefonico
+
+Contacto
+Telefonico
+
+Número
+
+Único
+
+nº_de_socio
+
+Nº de Sócio
+
+Texto
+
+Único
+Sequencial
+
+Legenda
+
+Tipo de Campo
+
+Relação
+
+Separador 2 - Financeiro:
+
+Campos:
+Campo (slug)
+
+tipo_mensalidade
+
+Tipo Mensalidade
+
+Selecção
+
+Única
+
+conta_corrente
+
+Conta Corrente
+
+Número
+
+Única
+
+centro_custo
+
+Centro de Custos
+
+Seleção
+
+Pode ter mais
+do que um
+
+Separador 3 - Desportivo
+
+É um separador que deve conter os Sub Separadores ( Dados Desportivos; Convocatórias, Registo
+Presenças, resultados Treinos e Planeamento
+
+Sub Separador - Dados desportivos
+Campos:
+
+Campo (slug)
+
+Legenda
+
+Tipo de Campo
+
+Relação
+
+num_federacao
+
+Nº de Federação
+
+Número
+
+Único
+
+cartao_federacao
+
+Cartão Federação
+
+Imagem
+
+Único
+
+numero_pmb
+
+Número PMB
+
+Número
+
+Único
+
+data_inscricao
+
+Data de Inscrição
+
+Selecção de data
+
+Único
+
+inscricao
+
+Inscrição
+
+Ficheiro
+
+Único
+
+escalao
+
+Escalão
+
+Caixa de selecção
+
+Pode ter mais
+do que um
+
+data_atestado_medi
+co
+
+Data Atestado
+Médico
+
+Selecção de data
+
+Único
+
+arquivo_atestado_m
+edico
+
+Arquivo Atestado
+Médico
+
+Ficheiro
+
+Pode ter mais
+do que um
+
+informacoes_medic
+as
+
+Informações
+Médicas
+
+Área de texto
+
+Pode ter mais
+do que um
+
+presencas
+
+Presenças
+
+Tabela
+
+Único
+
+treinos
+
+Treinos
+
+Tabela
+
+Único
+
+resultados
+
+Resultados
+
+Tabela
+
+Único
+
+ativo
+
+Ativo
+
+Verdadeiro / Falso
+
+Sim ou Não
+
+Sub Separador - Convocatórias
+​
+Deve conter a tabela de convocatórias que o atleta foi incluído
+
+Sub Separador - Registo Presenças
+​
+Deve conter a tabela com o registo de presenças que dizem respeito ao atleta
+
+Sub Separador - Resultados
+​
+Deve conter a tabela com o registo de resultados que dizem respeito ao atleta
+
+Sub Separador - Treinos
+​
+Deve conter a lista de treinos a que o atleta foi adicionado
+​
+Deve permitir abrir e consultar o treino
+​
+Deve permitir que o atleta selecione o treino como concluído
+​
+Deve permitir que o atleta corrija os metros finais
+
+Sub separador - Planeamento
+
+(Mesociclos / Microciclos)
+Aqui colocas a lógica de mesociclo e microciclo para o atleta que já tens pensado:
+●​ Tabela mesociclos​
+○​ id, macrociclo_id, nome, foco (ex.: VO2, técnica, sprint), data_inicio, data_fim​
+●​ Tabela microciclos​
+○​ id, mesociclo_id, semana (YYYY-WW), volume_previsto, notas
+○​
+○​ ​
+Separador 4 - Configuração
+
+Será nesta página que é gerido os acessos de utilizador à plataforma, o email de acesso e a palavra
+pass.
+O campo email_utilizador deverá ser igual na criação do utilizador ao campo email, para no futuro poder
+ser editado.
+Deve ser possível reenviar a recuperação de palavra pass
+Será aqui que se escolhe o tipo de perfil de utilizador e as permissões de acesso
+Campos:
+
+Campo (slug)
+
+Legenda
+
+Tipo de Campo
+
+Rel
+açã
+o
+
+perfil
+
+Perfil de autorizações
+
+Seleção
+
+Úni
+co
+
+rgpd
+
+RGPD
+
+Verdadeiro /
+Falso
+
+Sim
+ou
+Não
+
+data_rgpd
+
+Data RGPD
+
+Selecção de data
+
+Úni
+co
+
+arquivo_rgpd
+
+Arquivo RGPD
+
+Ficheiro
+
+Úni
+co
+
+consentimento
+
+Consentimento
+Imagens/Transporte
+
+Verdadeiro /
+Falso
+
+Sim
+ou
+Não
+
+data_consentimento
+
+Data Consentimento
+
+Selecção de data
+
+Úni
+co
+
+arquivo_consentimento
+
+Arquivo Consentimento
+
+Ficheiro
+
+Úni
+co
+
+afiliacao
+
+Afiliação
+
+Verdadeiro /
+Falso
+
+Sim
+ou
+Não
+
+data_afiliação
+
+Data Afiliação
+
+Selecção de data
+
+Úni
+co
+
+arquivo_afiliação
+
+Arquivo Afiliação
+
+Ficheiro
+
+Úni
+co
+
+rgpd_assinado
+
+RGPD Assinado
+
+Caixa de
+selecção
+
+Sim
+ou
+Não
+
+declaracao_de_transpo
+rte
+
+Declaração de Transporte
+
+Verdadeiro /
+Falso
+
+Sim
+ou
+Não
+
+declaracao_transporte
+
+Declaração Transporte
+
+Ficheiro
+
+Úni
+co
+
+Email_utilizador
+
+Email de autenticação á
+plataforma
+
+texto
+
+Uni
+co
+
+

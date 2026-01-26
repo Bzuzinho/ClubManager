@@ -1,0 +1,432 @@
+import { useEffect, useState, useCallback } from "react";
+import { useParams, useNavigate, Link } from "react-router-dom";
+import api from "../../lib/api";
+import Modal from "../../components/Modal";
+import MemberForm from "./MemberForm";
+
+type Member = {
+  id: number;
+  numero_socio?: string;
+  estado: string;
+  data_adesao: string;
+  observacoes?: string;
+  user?: {
+    id: number;
+    name: string;
+    email?: string;
+    telefone?: string;
+    dados_pessoais?: {
+      nome_completo: string;
+      nif?: string;
+      data_nascimento?: string;
+      nacionalidade?: string;
+      morada?: string;
+      codigo_postal?: string;
+      localidade?: string;
+    };
+  };
+  tipos?: { id: number; nome: string }[];
+  atleta?: {
+    id: number;
+    ativo: boolean;
+  };
+  dados_financeiros?: {
+    mensalidade?: {
+      id: number;
+      nome: string;
+      valor: number;
+    };
+    dia_cobranca?: number;
+  };
+};
+
+export default function MemberProfile() {
+  const { id } = useParams<{ id: string }>();
+  const navigate = useNavigate();
+  const [member, setMember] = useState<Member | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [activeTab, setActiveTab] = useState("geral");
+  const [showEditModal, setShowEditModal] = useState(false);
+
+  const loadMember = useCallback(() => {
+    setLoading(true);
+    api
+      .get(`/api/v2/membros/${id}`)
+      .then((res) => {
+        const data = res.data.data || res.data;
+        setMember(data);
+      })
+      .catch((err) => {
+        console.error("Erro ao carregar membro:", err);
+        alert("Erro ao carregar dados do membro");
+      })
+      .finally(() => setLoading(false));
+  }, [id]);
+
+  useEffect(() => {
+    if (id) {
+      loadMember();
+    }
+  }, [id, loadMember]);
+
+  const getInitials = (name: string) => {
+    return name
+      .split(" ")
+      .slice(0, 2)
+      .map((n) => n[0])
+      .join("")
+      .toUpperCase();
+  };
+
+  const handleEditClick = () => {
+    setShowEditModal(true);
+  };
+
+  const handleSaveEdit = () => {
+    setShowEditModal(false);
+    loadMember(); // Recarregar dados após edição
+  };
+
+  if (loading) {
+    return (
+      <div className="page-container">
+        <div className="card">A carregar perfil do membro...</div>
+      </div>
+    );
+  }
+
+  if (!member) {
+    return (
+      <div className="page-container">
+        <div className="card">
+          <p>Membro não encontrado</p>
+          <button className="btn" onClick={() => navigate("/membros")}>
+            Voltar aos Membros
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  const nomeCompleto = member.user?.dados_pessoais?.nome_completo || member.user?.name || "Sem nome";
+
+  return (
+    <div className="page-container">
+      {/* Header */}
+      <div style={{ marginBottom: 24 }}>
+        <Link to="/membros" style={{ color: "var(--primary)", textDecoration: "none", fontSize: 14 }}>
+          ← Voltar aos Membros
+        </Link>
+      </div>
+
+      {/* Profile Header */}
+      <div className="card" style={{ marginBottom: 24 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
+          {/* Avatar */}
+          <div
+            style={{
+              width: 80,
+              height: 80,
+              borderRadius: "50%",
+              background: "linear-gradient(135deg, var(--primary, #3b82f6), var(--primary-dark, #2563eb))",
+              color: "white",
+              display: "grid",
+              placeItems: "center",
+              fontSize: 28,
+              fontWeight: 700,
+            }}
+          >
+            {getInitials(nomeCompleto)}
+          </div>
+
+          {/* Info */}
+          <div style={{ flex: 1 }}>
+            <h1 style={{ fontSize: 24, fontWeight: 700, marginBottom: 8 }}>{nomeCompleto}</h1>
+            <div style={{ display: "flex", gap: 12, alignItems: "center", flexWrap: "wrap" }}>
+              {member.numero_socio && (
+                <span style={{ fontSize: 14, color: "var(--text-muted)" }}>
+                  Nº Sócio: {member.numero_socio}
+                </span>
+              )}
+              <span
+                className="badge"
+                style={{
+                  background:
+                    member.estado?.toLowerCase() === "ativo"
+                      ? "#10b981"
+                      : member.estado?.toLowerCase() === "inativo"
+                      ? "#6b7280"
+                      : "#f59e0b",
+                  color: "white",
+                  padding: "4px 12px",
+                  borderRadius: 6,
+                  fontSize: 12,
+                  fontWeight: 600,
+                }}
+              >
+                {member.estado}
+              </span>
+              {member.tipos?.map((tipo) => (
+                <span
+                  key={tipo.id}
+                  className="badge"
+                  style={{
+                    background: "var(--bg-page)",
+                    border: "1px solid var(--border-subtle)",
+                    padding: "4px 12px",
+                    borderRadius: 6,
+                    fontSize: 12,
+                  }}
+                >
+                  {tipo.nome}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* Actions */}
+          <div>
+            <button
+              className="btn primary"
+              onClick={handleEditClick}
+            >
+              Editar
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Tabs */}
+      <div className="card" style={{ marginBottom: 16, padding: 0 }}>
+        <div style={{ display: "flex", borderBottom: "1px solid var(--border-subtle)" }}>
+          <button
+            onClick={() => setActiveTab("geral")}
+            style={{
+              padding: "12px 24px",
+              border: "none",
+              background: "none",
+              cursor: "pointer",
+              fontWeight: activeTab === "geral" ? 600 : 400,
+              color: activeTab === "geral" ? "var(--primary)" : "var(--text-muted)",
+              borderBottom: activeTab === "geral" ? "2px solid var(--primary)" : "none",
+            }}
+          >
+            Informação Geral
+          </button>
+          <button
+            onClick={() => setActiveTab("desportivo")}
+            style={{
+              padding: "12px 24px",
+              border: "none",
+              background: "none",
+              cursor: "pointer",
+              fontWeight: activeTab === "desportivo" ? 600 : 400,
+              color: activeTab === "desportivo" ? "var(--primary)" : "var(--text-muted)",
+              borderBottom: activeTab === "desportivo" ? "2px solid var(--primary)" : "none",
+            }}
+          >
+            Desportivo
+          </button>
+          <button
+            onClick={() => setActiveTab("financeiro")}
+            style={{
+              padding: "12px 24px",
+              border: "none",
+              background: "none",
+              cursor: "pointer",
+              fontWeight: activeTab === "financeiro" ? 600 : 400,
+              color: activeTab === "financeiro" ? "var(--primary)" : "var(--text-muted)",
+              borderBottom: activeTab === "financeiro" ? "2px solid var(--primary)" : "none",
+            }}
+          >
+            Financeiro
+          </button>
+          <button
+            onClick={() => setActiveTab("documentos")}
+            style={{
+              padding: "12px 24px",
+              border: "none",
+              background: "none",
+              cursor: "pointer",
+              fontWeight: activeTab === "documentos" ? 600 : 400,
+              color: activeTab === "documentos" ? "var(--primary)" : "var(--text-muted)",
+              borderBottom: activeTab === "documentos" ? "2px solid var(--primary)" : "none",
+            }}
+          >
+            Documentos
+          </button>
+          <button
+            onClick={() => setActiveTab("historico")}
+            style={{
+              padding: "12px 24px",
+              border: "none",
+              background: "none",
+              cursor: "pointer",
+              fontWeight: activeTab === "historico" ? 600 : 400,
+              color: activeTab === "historico" ? "var(--primary)" : "var(--text-muted)",
+              borderBottom: activeTab === "historico" ? "2px solid var(--primary)" : "none",
+            }}
+          >
+            Histórico
+          </button>
+        </div>
+      </div>
+
+      {/* Tab Content */}
+      <div className="card">
+        {activeTab === "geral" && (
+          <div style={{ display: "grid", gap: 24 }}>
+            {/* Informação Pessoal */}
+            <div>
+              <h3 style={{ fontSize: 16, fontWeight: 600, marginBottom: 16 }}>Informação Pessoal</h3>
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
+                <div>
+                  <div style={{ fontSize: 12, color: "var(--text-muted)", marginBottom: 4 }}>Nome Completo</div>
+                  <div style={{ fontWeight: 500 }}>{nomeCompleto}</div>
+                </div>
+                <div>
+                  <div style={{ fontSize: 12, color: "var(--text-muted)", marginBottom: 4 }}>Email</div>
+                  <div style={{ fontWeight: 500 }}>{member.user?.email || "-"}</div>
+                </div>
+                <div>
+                  <div style={{ fontSize: 12, color: "var(--text-muted)", marginBottom: 4 }}>Telefone</div>
+                  <div style={{ fontWeight: 500 }}>{member.user?.telefone || "-"}</div>
+                </div>
+                <div>
+                  <div style={{ fontSize: 12, color: "var(--text-muted)", marginBottom: 4 }}>NIF</div>
+                  <div style={{ fontWeight: 500 }}>{member.user?.dados_pessoais?.nif || "-"}</div>
+                </div>
+                <div>
+                  <div style={{ fontSize: 12, color: "var(--text-muted)", marginBottom: 4 }}>Data de Nascimento</div>
+                  <div style={{ fontWeight: 500 }}>
+                    {member.user?.dados_pessoais?.data_nascimento
+                      ? new Date(member.user.dados_pessoais.data_nascimento).toLocaleDateString("pt-PT")
+                      : "-"}
+                  </div>
+                </div>
+                <div>
+                  <div style={{ fontSize: 12, color: "var(--text-muted)", marginBottom: 4 }}>Nacionalidade</div>
+                  <div style={{ fontWeight: 500 }}>{member.user?.dados_pessoais?.nacionalidade || "-"}</div>
+                </div>
+                <div style={{ gridColumn: "1 / -1" }}>
+                  <div style={{ fontSize: 12, color: "var(--text-muted)", marginBottom: 4 }}>Morada</div>
+                  <div style={{ fontWeight: 500 }}>
+                    {member.user?.dados_pessoais?.morada || "-"}
+                    {member.user?.dados_pessoais?.codigo_postal && (
+                      <> · {member.user.dados_pessoais.codigo_postal}</>
+                    )}
+                    {member.user?.dados_pessoais?.localidade && (
+                      <> · {member.user.dados_pessoais.localidade}</>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Informação de Membro */}
+            <div>
+              <h3 style={{ fontSize: 16, fontWeight: 600, marginBottom: 16 }}>Informação de Membro</h3>
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
+                <div>
+                  <div style={{ fontSize: 12, color: "var(--text-muted)", marginBottom: 4 }}>Número de Sócio</div>
+                  <div style={{ fontWeight: 500 }}>{member.numero_socio || "-"}</div>
+                </div>
+                <div>
+                  <div style={{ fontSize: 12, color: "var(--text-muted)", marginBottom: 4 }}>Data de Adesão</div>
+                  <div style={{ fontWeight: 500 }}>
+                    {member.data_adesao ? new Date(member.data_adesao).toLocaleDateString("pt-PT") : "-"}
+                  </div>
+                </div>
+                <div style={{ gridColumn: "1 / -1" }}>
+                  <div style={{ fontSize: 12, color: "var(--text-muted)", marginBottom: 4 }}>Observações</div>
+                  <div style={{ fontWeight: 500 }}>{member.observacoes || "-"}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {activeTab === "desportivo" && (
+          <div>
+            <h3 style={{ fontSize: 16, fontWeight: 600, marginBottom: 16 }}>Informação Desportiva</h3>
+            {member.atleta ? (
+              <div>
+                <p style={{ color: "var(--text-muted)", marginBottom: 16 }}>
+                  Este membro é atleta. Os dados desportivos detalhados estarão disponíveis em breve.
+                </p>
+                <div style={{ display: "flex", gap: 12 }}>
+                  <button className="btn outline">Ver Estatísticas</button>
+                  <button className="btn outline">Ver Equipas</button>
+                  <button className="btn outline">Ver Presenças</button>
+                </div>
+              </div>
+            ) : (
+              <p style={{ color: "var(--text-muted)" }}>Este membro não é atleta</p>
+            )}
+          </div>
+        )}
+
+        {activeTab === "financeiro" && (
+          <div>
+            <h3 style={{ fontSize: 16, fontWeight: 600, marginBottom: 16 }}>Informação Financeira</h3>
+            {member.dados_financeiros ? (
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
+                <div>
+                  <div style={{ fontSize: 12, color: "var(--text-muted)", marginBottom: 4 }}>Mensalidade</div>
+                  <div style={{ fontWeight: 500 }}>
+                    {member.dados_financeiros.mensalidade?.nome || "-"}
+                    {member.dados_financeiros.mensalidade?.valor && (
+                      <span style={{ color: "var(--text-muted)" }}>
+                        {" "}· €{member.dados_financeiros.mensalidade.valor.toFixed(2)}
+                      </span>
+                    )}
+                  </div>
+                </div>
+                <div>
+                  <div style={{ fontSize: 12, color: "var(--text-muted)", marginBottom: 4 }}>Dia de Cobrança</div>
+                  <div style={{ fontWeight: 500 }}>
+                    {member.dados_financeiros.dia_cobranca ? `Dia ${member.dados_financeiros.dia_cobranca}` : "-"}
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <p style={{ color: "var(--text-muted)" }}>Sem informação financeira configurada</p>
+            )}
+            
+            <div style={{ marginTop: 24 }}>
+              <button className="btn outline">Ver Conta Corrente</button>
+            </div>
+          </div>
+        )}
+
+        {activeTab === "documentos" && (
+          <div>
+            <h3 style={{ fontSize: 16, fontWeight: 600, marginBottom: 16 }}>Documentos</h3>
+            <p style={{ color: "var(--text-muted)" }}>Funcionalidade de documentos em desenvolvimento</p>
+          </div>
+        )}
+
+        {activeTab === "historico" && (
+          <div>
+            <h3 style={{ fontSize: 16, fontWeight: 600, marginBottom: 16 }}>Histórico de Atividades</h3>
+            <p style={{ color: "var(--text-muted)" }}>Histórico em desenvolvimento</p>
+          </div>
+        )}
+      </div>
+
+      {/* Modal de Edição */}
+      <Modal
+        isOpen={showEditModal}
+        onClose={() => setShowEditModal(false)}
+        title="Editar Membro"
+        size="lg"
+      >
+        <MemberForm
+          member={member || undefined}
+          onSave={handleSaveEdit}
+          onCancel={() => setShowEditModal(false)}
+        />
+      </Modal>
+    </div>
+  );
+}

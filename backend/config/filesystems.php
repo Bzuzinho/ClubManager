@@ -60,6 +60,39 @@ return [
             'report' => false,
         ],
 
+        // ClubManager specific disks
+        'documents' => [
+            'driver' => env('FILESYSTEM_DISK', 'local') === 's3' ? 's3' : 'local',
+            'root' => storage_path('app/documents'),
+            'visibility' => 'private',
+            'throw' => false,
+            'report' => false,
+        ],
+
+        'backups' => [
+            'driver' => env('BACKUP_DISK', 'local') === 's3' ? 's3' : 'local',
+            'root' => storage_path('app/backups'),
+            'visibility' => 'private',
+            'throw' => false,
+            'report' => false,
+        ],
+
+        'exports' => [
+            'driver' => 'local',
+            'root' => storage_path('app/exports'),
+            'visibility' => 'private',
+            'throw' => false,
+            'report' => false,
+        ],
+
+        'temp' => [
+            'driver' => 'local',
+            'root' => storage_path('app/temp'),
+            'visibility' => 'private',
+            'throw' => false,
+            'report' => false,
+        ],
+
     ],
 
     /*

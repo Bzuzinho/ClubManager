@@ -4,28 +4,26 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\Traits\HasClubScope;
 
 class Membro extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory, HasClubScope;
 
     protected $table = 'membros';
 
     protected $fillable = [
-        'pessoa_id',
+        'club_id',
+        'user_id',
         'numero_socio',
         'estado',
-        'data_inscricao',
-        'data_inicio',
+        'data_adesao',
         'data_fim',
-        'motivo_inativacao',
         'observacoes',
     ];
 
     protected $casts = [
-        'data_inscricao' => 'date',
-        'data_inicio' => 'date',
+        'data_adesao' => 'date',
         'data_fim' => 'date',
     ];
 
@@ -33,41 +31,41 @@ class Membro extends Model
      * RELAÇÕES
      * ===================== */
 
-    public function pessoa()
+    public function club()
     {
-        return $this->belongsTo(Pessoa::class);
+        return $this->belongsTo(Club::class);
     }
 
-    public function tipos()
+    public function user()
     {
-        return $this->belongsToMany(TipoMembro::class, 'membros_tipos')
-            ->withPivot('data_inicio', 'data_fim', 'ativo', 'observacoes')
-            ->withTimestamps();
+        return $this->belongsTo(User::class);
     }
 
     public function atleta()
     {
-        return $this->hasOne(Atleta::class);
+        return $this->hasOne(Atleta::class, 'membro_id');
+    }
+
+    public function dadosFinanceiros()
+    {
+        return $this->hasOne(DadosFinanceiros::class, 'membro_id');
+    }
+
+    public function tiposUtilizador()
+    {
+        return $this->hasManyThrough(
+            TipoUtilizador::class,
+            UserTipoUtilizador::class,
+            'user_id',
+            'id',
+            'user_id',
+            'tipo_utilizador_id'
+        );
     }
 
     public function faturas()
     {
-        return $this->hasMany(Fatura::class);
-    }
-
-    public function inscricoesEvento()
-    {
-        return $this->hasMany(InscricaoEvento::class);
-    }
-
-    public function equipasTreinador()
-    {
-        return $this->hasMany(Equipa::class, 'treinador_principal_id');
-    }
-
-    public function centrosCusto()
-    {
-        return $this->hasMany(CentroCusto::class, 'responsavel_id');
+        return $this->hasMany(Fatura::class, 'membro_id');
     }
 
     public function documentos()
@@ -89,8 +87,8 @@ class Membro extends Model
         return $query->where('estado', 'inativo');
     }
 
-    public function scopePendentes($query)
+    public function scopeSuspensos($query)
     {
-        return $query->where('estado', 'pendente');
+        return $query->where('estado', 'suspenso');
     }
 }

@@ -9,40 +9,26 @@ class DadosDesportivos extends Model
 {
     use HasFactory;
 
-    protected $table = 'dados_desportivos_atleta';
+    protected $table = 'dados_desportivos';
 
     protected $fillable = [
+        'club_id',
         'atleta_id',
-        'equipa_id',
-        'temporada',
-        'jogos_realizados',
-        'jogos_titular',
-        'minutos_jogados',
-        'golos',
-        'assistencias',
-        'cartoes_amarelos',
-        'cartoes_vermelhos',
-        'treinos_presentes',
-        'treinos_totais',
-        'percentagem_presenca',
-        'media_golos',
-        'observacoes',
+        'num_federacao',
+        'cartao_federacao',
+        'numero_pmb',
+        'data_inscricao',
+        'inscricao',
+        'escalao_atual_id',
+        'data_atestado_medico',
+        'informacoes_medicas',
+        'ativo',
     ];
 
     protected $casts = [
-        'atleta_id' => 'integer',
-        'equipa_id' => 'integer',
-        'jogos_realizados' => 'integer',
-        'jogos_titular' => 'integer',
-        'minutos_jogados' => 'integer',
-        'golos' => 'integer',
-        'assistencias' => 'integer',
-        'cartoes_amarelos' => 'integer',
-        'cartoes_vermelhos' => 'integer',
-        'treinos_presentes' => 'integer',
-        'treinos_totais' => 'integer',
-        'percentagem_presenca' => 'decimal:2',
-        'media_golos' => 'decimal:2',
+        'data_inscricao' => 'date',
+        'data_atestado_medico' => 'date',
+        'ativo' => 'boolean',
     ];
 
     /* =====================
