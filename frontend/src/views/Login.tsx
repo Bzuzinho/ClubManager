@@ -12,7 +12,24 @@ export default function Login() {
     setError(null);
     try {
       const res = await api.post("/api/login", { email, password });
-      localStorage.setItem("token", res.data.token);
+      
+      // Guardar token e dados do utilizador
+      if (res.data.token) {
+        localStorage.setItem("token", res.data.token);
+        localStorage.setItem("auth_token", res.data.token);
+      }
+      
+      // Guardar clube ativo se existir
+      if (res.data.user?.clubs && res.data.user.clubs.length > 0) {
+        const firstClubId = res.data.user.clubs[0].id;
+        localStorage.setItem("active_club_id", firstClubId.toString());
+      }
+      
+      // Guardar dados do utilizador
+      if (res.data.user) {
+        localStorage.setItem("user", JSON.stringify(res.data.user));
+      }
+      
       window.location.href = "/";
     } catch (e: any) {
       setError(e?.response?.data?.message ?? "Erro no login");

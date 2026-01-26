@@ -12,7 +12,21 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        //
+        // Adicionar CORS globalmente (para web e api)
+        $middleware->web(prepend: [
+            \Illuminate\Http\Middleware\HandleCors::class,
+        ]);
+        
+        $middleware->api(prepend: [
+            \Illuminate\Http\Middleware\HandleCors::class,
+        ]);
+        
+        $middleware->alias([
+            'ensure.club.context' => \App\Http\Middleware\EnsureClubContext::class,
+        ]);
+        
+        // Configurar redirect para unauthenticated na API
+        $middleware->redirectGuestsTo(fn () => response()->json(['message' => 'Unauthenticated.'], 401));
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //

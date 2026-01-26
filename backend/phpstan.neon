@@ -1,0 +1,23 @@
+includes:
+    - ./vendor/larastan/larastan/extension.neon
+
+parameters:
+    paths:
+        - app
+    
+    # Level 0-9 (0 = loose, 9 = strict)
+    level: 5
+    
+    ignoreErrors:
+        - '#Call to an undefined method Illuminate\\Database\\Eloquent\\Builder#'
+        - '#Unsafe usage of new static#'
+    
+    excludePaths:
+        - bootstrap/cache/*
+        - storage/*
+        - vendor/*
+    
+    checkMissingIterableValueType: false
+    checkGenericClassInNonGenericObjectType: false
+    
+    reportUnmatchedIgnoredErrors: false

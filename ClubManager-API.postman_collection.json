@@ -1,0 +1,532 @@
+{
+  "name": "ClubManager API",
+  "description": "API REST completa para gestão de clubes desportivos",
+  "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+  "item": [
+    {
+      "name": "Autenticação",
+      "item": [
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"admin@clubmanager.com\",\n  \"password\": \"admin123\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/login",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "login"]
+            }
+          }
+        },
+        {
+          "name": "Me (User Info)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/me",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "me"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Pessoas",
+      "item": [
+        {
+          "name": "Listar Pessoas",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/pessoas?per_page=15&search=",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "pessoas"],
+              "query": [
+                {
+                  "key": "per_page",
+                  "value": "15"
+                },
+                {
+                  "key": "search",
+                  "value": ""
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Criar Pessoa",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome_completo\": \"João Silva\",\n  \"email\": \"joao.silva@example.com\",\n  \"telemovel\": \"912345678\",\n  \"data_nascimento\": \"2010-05-15\",\n  \"nacionalidade\": \"Portuguesa\",\n  \"morada\": \"Rua Principal, 123\",\n  \"codigo_postal\": \"4000-123\",\n  \"localidade\": \"Porto\",\n  \"distrito\": \"Porto\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/pessoas",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "pessoas"]
+            }
+          }
+        },
+        {
+          "name": "Ver Pessoa",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/pessoas/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "pessoas", "1"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Membros",
+      "item": [
+        {
+          "name": "Listar Membros",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/membros?estado=ativo&ativos=true",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "membros"],
+              "query": [
+                {
+                  "key": "estado",
+                  "value": "ativo"
+                },
+                {
+                  "key": "ativos",
+                  "value": "true"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Criar Membro",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"pessoa_id\": 1,\n  \"estado\": \"ativo\",\n  \"data_inscricao\": \"2026-01-22\",\n  \"tipos\": [\n    {\n      \"tipo_membro_id\": 1,\n      \"data_inicio\": \"2026-01-22\",\n      \"ativo\": true\n    }\n  ]\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/membros",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "membros"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Atletas",
+      "item": [
+        {
+          "name": "Listar Atletas",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/atletas?ativo=true",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "atletas"],
+              "query": [
+                {
+                  "key": "ativo",
+                  "value": "true"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Criar Atleta",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"membro_id\": 1,\n  \"ativo\": true,\n  \"numero_camisola\": 10,\n  \"altura\": 175,\n  \"peso\": 70,\n  \"pe_dominante\": \"direito\",\n  \"posicao_preferida\": \"Médio\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/atletas",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "atletas"]
+            }
+          }
+        },
+        {
+          "name": "Estatísticas Atleta",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/atletas/1/estatisticas?temporada=2025/2026",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "atletas", "1", "estatisticas"],
+              "query": [
+                {
+                  "key": "temporada",
+                  "value": "2025/2026"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Equipas",
+      "item": [
+        {
+          "name": "Listar Equipas",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/equipas?temporada_atual=true&ativas=true",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "equipas"],
+              "query": [
+                {
+                  "key": "temporada_atual",
+                  "value": "true"
+                },
+                {
+                  "key": "ativas",
+                  "value": "true"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Plantel da Equipa",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/equipas/1/plantel",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "equipas", "1", "plantel"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Treinos",
+      "item": [
+        {
+          "name": "Listar Treinos",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/treinos?equipa_id=1&agendados=true",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "treinos"],
+              "query": [
+                {
+                  "key": "equipa_id",
+                  "value": "1"
+                },
+                {
+                  "key": "agendados",
+                  "value": "true"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Registar Presenças",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"presencas\": [\n    {\n      \"atleta_id\": 1,\n      \"estado\": \"presente\",\n      \"hora_chegada\": \"18:00\"\n    },\n    {\n      \"atleta_id\": 2,\n      \"estado\": \"ausente\",\n      \"justificacao\": \"Doente\"\n    }\n  ]\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/treinos/1/presencas",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "treinos", "1", "presencas"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Faturas",
+      "item": [
+        {
+          "name": "Listar Faturas",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/faturas?estado=pendente",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "faturas"],
+              "query": [
+                {
+                  "key": "estado",
+                  "value": "pendente"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Criar Fatura",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"membro_id\": 1,\n  \"data_emissao\": \"2026-01-22\",\n  \"data_vencimento\": \"2026-02-22\",\n  \"tipo\": \"mensalidade\",\n  \"itens\": [\n    {\n      \"descricao\": \"Mensalidade Janeiro 2026\",\n      \"quantidade\": 1,\n      \"preco_unitario\": 30.00,\n      \"desconto\": 0\n    }\n  ]\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/faturas",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "faturas"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Pagamentos",
+      "item": [
+        {
+          "name": "Registar Pagamento",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fatura_id\": 1,\n  \"metodo_pagamento_id\": 1,\n  \"data_pagamento\": \"2026-01-22\",\n  \"valor\": 30.00,\n  \"referencia\": \"MB123456\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/pagamentos",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "pagamentos"]
+            }
+          }
+        },
+        {
+          "name": "Confirmar Pagamento",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/pagamentos/1/confirmar",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "pagamentos", "1", "confirmar"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Eventos",
+      "item": [
+        {
+          "name": "Listar Eventos",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/eventos?publicos=true&publicados=true",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "eventos"],
+              "query": [
+                {
+                  "key": "publicos",
+                  "value": "true"
+                },
+                {
+                  "key": "publicados",
+                  "value": "true"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Inscrever em Evento",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"membro_id\": 1,\n  \"numero_acompanhantes\": 2,\n  \"observacoes\": \"Confirmo presença\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/eventos/1/inscrever",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "eventos", "1", "inscrever"]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8000",
+      "type": "string"
+    },
+    {
+      "key": "token",
+      "value": "",
+      "type": "string"
+    }
+  ]
+}

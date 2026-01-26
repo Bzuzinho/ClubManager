@@ -1,0 +1,2422 @@
+<testsuites id="" name="" tests="70" failures="70" skipped="0" errors="0" time="814.7899610000001">
+<testsuite name="auth.spec.ts" timestamp="2026-01-23T14:37:04.019Z" hostname="chromium" tests="5" failures="5" skipped="0" time="138.195" errors="0">
+<testcase name="Authentication Flow › should display login form" classname="auth.spec.ts" time="6.627">
+<failure message="auth.spec.ts:8:3 should display login form" type="FAILURE">
+<![CDATA[  [chromium] › auth.spec.ts:8:3 › Authentication Flow › should display login form ──────────────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('input[type="email"]')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" with timeout 5000ms
+      - waiting for locator('input[type="email"]')
+
+
+       7 |
+       8 |   test('should display login form', async ({ page }) => {
+    >  9 |     await expect(page.locator('input[type="email"]')).toBeVisible();
+         |                                                       ^
+      10 |     await expect(page.locator('input[type="password"]')).toBeVisible();
+      11 |     await expect(page.locator('button[type="submit"]')).toBeVisible();
+      12 |   });
+        at /workspaces/ClubManager/frontend/e2e/auth.spec.ts:9:55
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/auth-Authentication-Flow-should-display-login-form-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/auth-Authentication-Flow-should-display-login-form-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/auth-Authentication-Flow-should-display-login-form-chromium/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|auth-Authentication-Flow-should-display-login-form-chromium/test-failed-1.png]]
+
+[[ATTACHMENT|auth-Authentication-Flow-should-display-login-form-chromium/video.webm]]
+
+[[ATTACHMENT|auth-Authentication-Flow-should-display-login-form-chromium/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Authentication Flow › should show validation errors for empty fields" classname="auth.spec.ts" time="32.933">
+<failure message="auth.spec.ts:14:3 should show validation errors for empty fields" type="FAILURE">
+<![CDATA[  [chromium] › auth.spec.ts:14:3 › Authentication Flow › should show validation errors for empty fields 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for locator('button[type="submit"]')
+
+
+      13 |
+      14 |   test('should show validation errors for empty fields', async ({ page }) => {
+    > 15 |     await page.locator('button[type="submit"]').click();
+         |                                                 ^
+      16 |     
+      17 |     await expect(page.locator('text=/email.*required/i')).toBeVisible();
+      18 |     await expect(page.locator('text=/password.*required/i')).toBeVisible();
+        at /workspaces/ClubManager/frontend/e2e/auth.spec.ts:15:49
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/auth-Authentication-Flow-s-4800c-ion-errors-for-empty-fields-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/auth-Authentication-Flow-s-4800c-ion-errors-for-empty-fields-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/auth-Authentication-Flow-s-4800c-ion-errors-for-empty-fields-chromium/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|auth-Authentication-Flow-s-4800c-ion-errors-for-empty-fields-chromium/test-failed-1.png]]
+
+[[ATTACHMENT|auth-Authentication-Flow-s-4800c-ion-errors-for-empty-fields-chromium/video.webm]]
+
+[[ATTACHMENT|auth-Authentication-Flow-s-4800c-ion-errors-for-empty-fields-chromium/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Authentication Flow › should show error for invalid credentials" classname="auth.spec.ts" time="32.954">
+<failure message="auth.spec.ts:21:3 should show error for invalid credentials" type="FAILURE">
+<![CDATA[  [chromium] › auth.spec.ts:21:3 › Authentication Flow › should show error for invalid credentials ─
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.fill: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for locator('input[type="email"]')
+
+
+      20 |
+      21 |   test('should show error for invalid credentials', async ({ page }) => {
+    > 22 |     await page.locator('input[type="email"]').fill('invalid@example.com');
+         |                                               ^
+      23 |     await page.locator('input[type="password"]').fill('wrongpassword');
+      24 |     await page.locator('button[type="submit"]').click();
+      25 |
+        at /workspaces/ClubManager/frontend/e2e/auth.spec.ts:22:47
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/auth-Authentication-Flow-s-c1b41-ror-for-invalid-credentials-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/auth-Authentication-Flow-s-c1b41-ror-for-invalid-credentials-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/auth-Authentication-Flow-s-c1b41-ror-for-invalid-credentials-chromium/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|auth-Authentication-Flow-s-c1b41-ror-for-invalid-credentials-chromium/test-failed-1.png]]
+
+[[ATTACHMENT|auth-Authentication-Flow-s-c1b41-ror-for-invalid-credentials-chromium/video.webm]]
+
+[[ATTACHMENT|auth-Authentication-Flow-s-c1b41-ror-for-invalid-credentials-chromium/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Authentication Flow › should login successfully with valid credentials" classname="auth.spec.ts" time="32.948">
+<failure message="auth.spec.ts:29:3 should login successfully with valid credentials" type="FAILURE">
+<![CDATA[  [chromium] › auth.spec.ts:29:3 › Authentication Flow › should login successfully with valid credentials 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.fill: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for locator('input[type="email"]')
+
+
+      44 |     });
+      45 |
+    > 46 |     await page.locator('input[type="email"]').fill('admin@example.com');
+         |                                               ^
+      47 |     await page.locator('input[type="password"]').fill('password123');
+      48 |     await page.locator('button[type="submit"]').click();
+      49 |
+        at /workspaces/ClubManager/frontend/e2e/auth.spec.ts:46:47
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/auth-Authentication-Flow-s-74377-ully-with-valid-credentials-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/auth-Authentication-Flow-s-74377-ully-with-valid-credentials-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/auth-Authentication-Flow-s-74377-ully-with-valid-credentials-chromium/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|auth-Authentication-Flow-s-74377-ully-with-valid-credentials-chromium/test-failed-1.png]]
+
+[[ATTACHMENT|auth-Authentication-Flow-s-74377-ully-with-valid-credentials-chromium/video.webm]]
+
+[[ATTACHMENT|auth-Authentication-Flow-s-74377-ully-with-valid-credentials-chromium/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Authentication Flow › should logout successfully" classname="auth.spec.ts" time="32.733">
+<failure message="auth.spec.ts:54:3 should logout successfully" type="FAILURE">
+<![CDATA[  [chromium] › auth.spec.ts:54:3 › Authentication Flow › should logout successfully ────────────────
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for locator('[data-testid="logout-button"]')
+
+
+      65 |     
+      66 |     // Click logout button
+    > 67 |     await page.locator('[data-testid="logout-button"]').click();
+         |                                                         ^
+      68 |     
+      69 |     // Verificar redirecionamento para login
+      70 |     await expect(page).toHaveURL(/.*login/);
+        at /workspaces/ClubManager/frontend/e2e/auth.spec.ts:67:57
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/auth-Authentication-Flow-should-logout-successfully-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/auth-Authentication-Flow-should-logout-successfully-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/auth-Authentication-Flow-should-logout-successfully-chromium/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|auth-Authentication-Flow-should-logout-successfully-chromium/test-failed-1.png]]
+
+[[ATTACHMENT|auth-Authentication-Flow-should-logout-successfully-chromium/video.webm]]
+
+[[ATTACHMENT|auth-Authentication-Flow-should-logout-successfully-chromium/error-context.md]]
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="membros.spec.ts" timestamp="2026-01-23T14:37:04.019Z" hostname="chromium" tests="9" failures="9" skipped="0" time="2.776" errors="0">
+<testcase name="Membros Management › should display membros list" classname="membros.spec.ts" time="0.309">
+<failure message="membros.spec.ts:59:3 should display membros list" type="FAILURE">
+<![CDATA[  [chromium] › membros.spec.ts:59:3 › Membros Management › should display membros list ─────────────
+
+    Error: page.evaluate: SecurityError: Failed to read the 'localStorage' property from 'Window': Access is denied for this document.
+        at UtilityScript.evaluate (<anonymous>:292:16)
+        at UtilityScript.<anonymous> (<anonymous>:1:44)
+        at UtilityScript.evaluate (<anonymous>:292:16)
+        at UtilityScript.<anonymous> (<anonymous>:1:44)
+        at authenticate (/workspaces/ClubManager/frontend/e2e/membros.spec.ts:5:14)
+        at /workspaces/ClubManager/frontend/e2e/membros.spec.ts:18:11
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/membros-Membros-Management-should-display-membros-list-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/membros-Membros-Management-should-display-membros-list-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|membros-Membros-Management-should-display-membros-list-chromium/test-failed-1.png]]
+
+[[ATTACHMENT|membros-Membros-Management-should-display-membros-list-chromium/video.webm]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Membros Management › should filter membros by status" classname="membros.spec.ts" time="0.324">
+<failure message="membros.spec.ts:66:3 should filter membros by status" type="FAILURE">
+<![CDATA[  [chromium] › membros.spec.ts:66:3 › Membros Management › should filter membros by status ─────────
+
+    Error: page.evaluate: SecurityError: Failed to read the 'localStorage' property from 'Window': Access is denied for this document.
+        at UtilityScript.evaluate (<anonymous>:292:16)
+        at UtilityScript.<anonymous> (<anonymous>:1:44)
+        at UtilityScript.evaluate (<anonymous>:292:16)
+        at UtilityScript.<anonymous> (<anonymous>:1:44)
+        at authenticate (/workspaces/ClubManager/frontend/e2e/membros.spec.ts:5:14)
+        at /workspaces/ClubManager/frontend/e2e/membros.spec.ts:18:11
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/membros-Membros-Management-should-filter-membros-by-status-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/membros-Membros-Management-should-filter-membros-by-status-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|membros-Membros-Management-should-filter-membros-by-status-chromium/test-failed-1.png]]
+
+[[ATTACHMENT|membros-Membros-Management-should-filter-membros-by-status-chromium/video.webm]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Membros Management › should search membros by name" classname="membros.spec.ts" time="0.315">
+<failure message="membros.spec.ts:91:3 should search membros by name" type="FAILURE">
+<![CDATA[  [chromium] › membros.spec.ts:91:3 › Membros Management › should search membros by name ───────────
+
+    Error: page.evaluate: SecurityError: Failed to read the 'localStorage' property from 'Window': Access is denied for this document.
+        at UtilityScript.evaluate (<anonymous>:292:16)
+        at UtilityScript.<anonymous> (<anonymous>:1:44)
+        at UtilityScript.evaluate (<anonymous>:292:16)
+        at UtilityScript.<anonymous> (<anonymous>:1:44)
+        at authenticate (/workspaces/ClubManager/frontend/e2e/membros.spec.ts:5:14)
+        at /workspaces/ClubManager/frontend/e2e/membros.spec.ts:18:11
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/membros-Membros-Management-should-search-membros-by-name-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/membros-Membros-Management-should-search-membros-by-name-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|membros-Membros-Management-should-search-membros-by-name-chromium/test-failed-1.png]]
+
+[[ATTACHMENT|membros-Membros-Management-should-search-membros-by-name-chromium/video.webm]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Membros Management › should open create membro modal" classname="membros.spec.ts" time="0.316">
+<failure message="membros.spec.ts:98:3 should open create membro modal" type="FAILURE">
+<![CDATA[  [chromium] › membros.spec.ts:98:3 › Membros Management › should open create membro modal ─────────
+
+    Error: page.evaluate: SecurityError: Failed to read the 'localStorage' property from 'Window': Access is denied for this document.
+        at UtilityScript.evaluate (<anonymous>:292:16)
+        at UtilityScript.<anonymous> (<anonymous>:1:44)
+        at UtilityScript.evaluate (<anonymous>:292:16)
+        at UtilityScript.<anonymous> (<anonymous>:1:44)
+        at authenticate (/workspaces/ClubManager/frontend/e2e/membros.spec.ts:5:14)
+        at /workspaces/ClubManager/frontend/e2e/membros.spec.ts:18:11
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/membros-Membros-Management-should-open-create-membro-modal-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/membros-Membros-Management-should-open-create-membro-modal-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|membros-Membros-Management-should-open-create-membro-modal-chromium/test-failed-1.png]]
+
+[[ATTACHMENT|membros-Membros-Management-should-open-create-membro-modal-chromium/video.webm]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Membros Management › should create new membro" classname="membros.spec.ts" time="0.297">
+<failure message="membros.spec.ts:106:3 should create new membro" type="FAILURE">
+<![CDATA[  [chromium] › membros.spec.ts:106:3 › Membros Management › should create new membro ───────────────
+
+    Error: page.evaluate: SecurityError: Failed to read the 'localStorage' property from 'Window': Access is denied for this document.
+        at UtilityScript.evaluate (<anonymous>:292:16)
+        at UtilityScript.<anonymous> (<anonymous>:1:44)
+        at UtilityScript.evaluate (<anonymous>:292:16)
+        at UtilityScript.<anonymous> (<anonymous>:1:44)
+        at authenticate (/workspaces/ClubManager/frontend/e2e/membros.spec.ts:5:14)
+        at /workspaces/ClubManager/frontend/e2e/membros.spec.ts:18:11
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/membros-Membros-Management-should-create-new-membro-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/membros-Membros-Management-should-create-new-membro-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|membros-Membros-Management-should-create-new-membro-chromium/test-failed-1.png]]
+
+[[ATTACHMENT|membros-Membros-Management-should-create-new-membro-chromium/video.webm]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Membros Management › should view membro details" classname="membros.spec.ts" time="0.309">
+<failure message="membros.spec.ts:136:3 should view membro details" type="FAILURE">
+<![CDATA[  [chromium] › membros.spec.ts:136:3 › Membros Management › should view membro details ─────────────
+
+    Error: page.evaluate: SecurityError: Failed to read the 'localStorage' property from 'Window': Access is denied for this document.
+        at UtilityScript.evaluate (<anonymous>:292:16)
+        at UtilityScript.<anonymous> (<anonymous>:1:44)
+        at UtilityScript.evaluate (<anonymous>:292:16)
+        at UtilityScript.<anonymous> (<anonymous>:1:44)
+        at authenticate (/workspaces/ClubManager/frontend/e2e/membros.spec.ts:5:14)
+        at /workspaces/ClubManager/frontend/e2e/membros.spec.ts:18:11
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/membros-Membros-Management-should-view-membro-details-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/membros-Membros-Management-should-view-membro-details-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|membros-Membros-Management-should-view-membro-details-chromium/test-failed-1.png]]
+
+[[ATTACHMENT|membros-Membros-Management-should-view-membro-details-chromium/video.webm]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Membros Management › should edit membro" classname="membros.spec.ts" time="0.329">
+<failure message="membros.spec.ts:143:3 should edit membro" type="FAILURE">
+<![CDATA[  [chromium] › membros.spec.ts:143:3 › Membros Management › should edit membro ─────────────────────
+
+    Error: page.evaluate: SecurityError: Failed to read the 'localStorage' property from 'Window': Access is denied for this document.
+        at UtilityScript.evaluate (<anonymous>:292:16)
+        at UtilityScript.<anonymous> (<anonymous>:1:44)
+        at UtilityScript.evaluate (<anonymous>:292:16)
+        at UtilityScript.<anonymous> (<anonymous>:1:44)
+        at authenticate (/workspaces/ClubManager/frontend/e2e/membros.spec.ts:5:14)
+        at /workspaces/ClubManager/frontend/e2e/membros.spec.ts:18:11
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/membros-Membros-Management-should-edit-membro-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/membros-Membros-Management-should-edit-membro-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|membros-Membros-Management-should-edit-membro-chromium/test-failed-1.png]]
+
+[[ATTACHMENT|membros-Membros-Management-should-edit-membro-chromium/video.webm]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Membros Management › should delete membro with confirmation" classname="membros.spec.ts" time="0.293">
+<failure message="membros.spec.ts:152:3 should delete membro with confirmation" type="FAILURE">
+<![CDATA[  [chromium] › membros.spec.ts:152:3 › Membros Management › should delete membro with confirmation ─
+
+    Error: page.evaluate: SecurityError: Failed to read the 'localStorage' property from 'Window': Access is denied for this document.
+        at UtilityScript.evaluate (<anonymous>:292:16)
+        at UtilityScript.<anonymous> (<anonymous>:1:44)
+        at UtilityScript.evaluate (<anonymous>:292:16)
+        at UtilityScript.<anonymous> (<anonymous>:1:44)
+        at authenticate (/workspaces/ClubManager/frontend/e2e/membros.spec.ts:5:14)
+        at /workspaces/ClubManager/frontend/e2e/membros.spec.ts:18:11
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/membros-Membros-Management-32c45-te-membro-with-confirmation-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/membros-Membros-Management-32c45-te-membro-with-confirmation-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|membros-Membros-Management-32c45-te-membro-with-confirmation-chromium/test-failed-1.png]]
+
+[[ATTACHMENT|membros-Membros-Management-32c45-te-membro-with-confirmation-chromium/video.webm]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Membros Management › should paginate through membros" classname="membros.spec.ts" time="0.284">
+<failure message="membros.spec.ts:160:3 should paginate through membros" type="FAILURE">
+<![CDATA[  [chromium] › membros.spec.ts:160:3 › Membros Management › should paginate through membros ────────
+
+    Error: page.evaluate: SecurityError: Failed to read the 'localStorage' property from 'Window': Access is denied for this document.
+        at UtilityScript.evaluate (<anonymous>:292:16)
+        at UtilityScript.<anonymous> (<anonymous>:1:44)
+        at UtilityScript.evaluate (<anonymous>:292:16)
+        at UtilityScript.<anonymous> (<anonymous>:1:44)
+        at authenticate (/workspaces/ClubManager/frontend/e2e/membros.spec.ts:5:14)
+        at /workspaces/ClubManager/frontend/e2e/membros.spec.ts:18:11
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/membros-Membros-Management-should-paginate-through-membros-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/membros-Membros-Management-should-paginate-through-membros-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|membros-Membros-Management-should-paginate-through-membros-chromium/test-failed-1.png]]
+
+[[ATTACHMENT|membros-Membros-Management-should-paginate-through-membros-chromium/video.webm]]
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="auth.spec.ts" timestamp="2026-01-23T14:37:04.019Z" hostname="firefox" tests="5" failures="5" skipped="0" time="128.036" errors="0">
+<testcase name="Authentication Flow › should display login form" classname="auth.spec.ts" time="7.325">
+<failure message="auth.spec.ts:8:3 should display login form" type="FAILURE">
+<![CDATA[  [firefox] › auth.spec.ts:8:3 › Authentication Flow › should display login form ───────────────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('input[type="email"]')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" with timeout 5000ms
+      - waiting for locator('input[type="email"]')
+
+
+       7 |
+       8 |   test('should display login form', async ({ page }) => {
+    >  9 |     await expect(page.locator('input[type="email"]')).toBeVisible();
+         |                                                       ^
+      10 |     await expect(page.locator('input[type="password"]')).toBeVisible();
+      11 |     await expect(page.locator('button[type="submit"]')).toBeVisible();
+      12 |   });
+        at /workspaces/ClubManager/frontend/e2e/auth.spec.ts:9:55
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/auth-Authentication-Flow-should-display-login-form-firefox/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/auth-Authentication-Flow-should-display-login-form-firefox/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/auth-Authentication-Flow-should-display-login-form-firefox/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|auth-Authentication-Flow-should-display-login-form-firefox/test-failed-1.png]]
+
+[[ATTACHMENT|auth-Authentication-Flow-should-display-login-form-firefox/video.webm]]
+
+[[ATTACHMENT|auth-Authentication-Flow-should-display-login-form-firefox/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Authentication Flow › should show validation errors for empty fields" classname="auth.spec.ts" time="30.164">
+<failure message="auth.spec.ts:14:3 should show validation errors for empty fields" type="FAILURE">
+<![CDATA[  [firefox] › auth.spec.ts:14:3 › Authentication Flow › should show validation errors for empty fields 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for locator('button[type="submit"]')
+
+
+      13 |
+      14 |   test('should show validation errors for empty fields', async ({ page }) => {
+    > 15 |     await page.locator('button[type="submit"]').click();
+         |                                                 ^
+      16 |     
+      17 |     await expect(page.locator('text=/email.*required/i')).toBeVisible();
+      18 |     await expect(page.locator('text=/password.*required/i')).toBeVisible();
+        at /workspaces/ClubManager/frontend/e2e/auth.spec.ts:15:49
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/auth-Authentication-Flow-s-4800c-ion-errors-for-empty-fields-firefox/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/auth-Authentication-Flow-s-4800c-ion-errors-for-empty-fields-firefox/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/auth-Authentication-Flow-s-4800c-ion-errors-for-empty-fields-firefox/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|auth-Authentication-Flow-s-4800c-ion-errors-for-empty-fields-firefox/test-failed-1.png]]
+
+[[ATTACHMENT|auth-Authentication-Flow-s-4800c-ion-errors-for-empty-fields-firefox/video.webm]]
+
+[[ATTACHMENT|auth-Authentication-Flow-s-4800c-ion-errors-for-empty-fields-firefox/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Authentication Flow › should show error for invalid credentials" classname="auth.spec.ts" time="30.169">
+<failure message="auth.spec.ts:21:3 should show error for invalid credentials" type="FAILURE">
+<![CDATA[  [firefox] › auth.spec.ts:21:3 › Authentication Flow › should show error for invalid credentials ──
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.fill: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for locator('input[type="email"]')
+
+
+      20 |
+      21 |   test('should show error for invalid credentials', async ({ page }) => {
+    > 22 |     await page.locator('input[type="email"]').fill('invalid@example.com');
+         |                                               ^
+      23 |     await page.locator('input[type="password"]').fill('wrongpassword');
+      24 |     await page.locator('button[type="submit"]').click();
+      25 |
+        at /workspaces/ClubManager/frontend/e2e/auth.spec.ts:22:47
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/auth-Authentication-Flow-s-c1b41-ror-for-invalid-credentials-firefox/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/auth-Authentication-Flow-s-c1b41-ror-for-invalid-credentials-firefox/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/auth-Authentication-Flow-s-c1b41-ror-for-invalid-credentials-firefox/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|auth-Authentication-Flow-s-c1b41-ror-for-invalid-credentials-firefox/test-failed-1.png]]
+
+[[ATTACHMENT|auth-Authentication-Flow-s-c1b41-ror-for-invalid-credentials-firefox/video.webm]]
+
+[[ATTACHMENT|auth-Authentication-Flow-s-c1b41-ror-for-invalid-credentials-firefox/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Authentication Flow › should login successfully with valid credentials" classname="auth.spec.ts" time="30.222">
+<failure message="auth.spec.ts:29:3 should login successfully with valid credentials" type="FAILURE">
+<![CDATA[  [firefox] › auth.spec.ts:29:3 › Authentication Flow › should login successfully with valid credentials 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.fill: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for locator('input[type="email"]')
+
+
+      44 |     });
+      45 |
+    > 46 |     await page.locator('input[type="email"]').fill('admin@example.com');
+         |                                               ^
+      47 |     await page.locator('input[type="password"]').fill('password123');
+      48 |     await page.locator('button[type="submit"]').click();
+      49 |
+        at /workspaces/ClubManager/frontend/e2e/auth.spec.ts:46:47
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/auth-Authentication-Flow-s-74377-ully-with-valid-credentials-firefox/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/auth-Authentication-Flow-s-74377-ully-with-valid-credentials-firefox/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/auth-Authentication-Flow-s-74377-ully-with-valid-credentials-firefox/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|auth-Authentication-Flow-s-74377-ully-with-valid-credentials-firefox/test-failed-1.png]]
+
+[[ATTACHMENT|auth-Authentication-Flow-s-74377-ully-with-valid-credentials-firefox/video.webm]]
+
+[[ATTACHMENT|auth-Authentication-Flow-s-74377-ully-with-valid-credentials-firefox/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Authentication Flow › should logout successfully" classname="auth.spec.ts" time="30.156">
+<failure message="auth.spec.ts:54:3 should logout successfully" type="FAILURE">
+<![CDATA[  [firefox] › auth.spec.ts:54:3 › Authentication Flow › should logout successfully ─────────────────
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for locator('[data-testid="logout-button"]')
+
+
+      65 |     
+      66 |     // Click logout button
+    > 67 |     await page.locator('[data-testid="logout-button"]').click();
+         |                                                         ^
+      68 |     
+      69 |     // Verificar redirecionamento para login
+      70 |     await expect(page).toHaveURL(/.*login/);
+        at /workspaces/ClubManager/frontend/e2e/auth.spec.ts:67:57
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/auth-Authentication-Flow-should-logout-successfully-firefox/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/auth-Authentication-Flow-should-logout-successfully-firefox/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/auth-Authentication-Flow-should-logout-successfully-firefox/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|auth-Authentication-Flow-should-logout-successfully-firefox/test-failed-1.png]]
+
+[[ATTACHMENT|auth-Authentication-Flow-should-logout-successfully-firefox/video.webm]]
+
+[[ATTACHMENT|auth-Authentication-Flow-should-logout-successfully-firefox/error-context.md]]
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="membros.spec.ts" timestamp="2026-01-23T14:37:04.019Z" hostname="firefox" tests="9" failures="9" skipped="0" time="13.414" errors="0">
+<testcase name="Membros Management › should display membros list" classname="membros.spec.ts" time="1.43">
+<failure message="membros.spec.ts:59:3 should display membros list" type="FAILURE">
+<![CDATA[  [firefox] › membros.spec.ts:59:3 › Membros Management › should display membros list ──────────────
+
+    Error: page.evaluate: The operation is insecure.
+    @debugger eval code line 290 > eval:2:5
+    evaluate@debugger eval code:292:16
+    @debugger eval code:1:44
+
+        at @debugger eval code line 290 > eval:2:5
+        at evaluate@debugger eval code:292:16
+        at @debugger eval code:1:44
+        at authenticate (/workspaces/ClubManager/frontend/e2e/membros.spec.ts:5:14)
+        at /workspaces/ClubManager/frontend/e2e/membros.spec.ts:18:11
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/membros-Membros-Management-should-display-membros-list-firefox/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/membros-Membros-Management-should-display-membros-list-firefox/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|membros-Membros-Management-should-display-membros-list-firefox/test-failed-1.png]]
+
+[[ATTACHMENT|membros-Membros-Management-should-display-membros-list-firefox/video.webm]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Membros Management › should filter membros by status" classname="membros.spec.ts" time="1.607">
+<failure message="membros.spec.ts:66:3 should filter membros by status" type="FAILURE">
+<![CDATA[  [firefox] › membros.spec.ts:66:3 › Membros Management › should filter membros by status ──────────
+
+    Error: page.evaluate: The operation is insecure.
+    @debugger eval code line 290 > eval:2:5
+    evaluate@debugger eval code:292:16
+    @debugger eval code:1:44
+
+        at @debugger eval code line 290 > eval:2:5
+        at evaluate@debugger eval code:292:16
+        at @debugger eval code:1:44
+        at authenticate (/workspaces/ClubManager/frontend/e2e/membros.spec.ts:5:14)
+        at /workspaces/ClubManager/frontend/e2e/membros.spec.ts:18:11
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/membros-Membros-Management-should-filter-membros-by-status-firefox/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/membros-Membros-Management-should-filter-membros-by-status-firefox/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|membros-Membros-Management-should-filter-membros-by-status-firefox/test-failed-1.png]]
+
+[[ATTACHMENT|membros-Membros-Management-should-filter-membros-by-status-firefox/video.webm]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Membros Management › should search membros by name" classname="membros.spec.ts" time="1.458">
+<failure message="membros.spec.ts:91:3 should search membros by name" type="FAILURE">
+<![CDATA[  [firefox] › membros.spec.ts:91:3 › Membros Management › should search membros by name ────────────
+
+    Error: page.evaluate: The operation is insecure.
+    @debugger eval code line 290 > eval:2:5
+    evaluate@debugger eval code:292:16
+    @debugger eval code:1:44
+
+        at @debugger eval code line 290 > eval:2:5
+        at evaluate@debugger eval code:292:16
+        at @debugger eval code:1:44
+        at authenticate (/workspaces/ClubManager/frontend/e2e/membros.spec.ts:5:14)
+        at /workspaces/ClubManager/frontend/e2e/membros.spec.ts:18:11
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/membros-Membros-Management-should-search-membros-by-name-firefox/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/membros-Membros-Management-should-search-membros-by-name-firefox/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|membros-Membros-Management-should-search-membros-by-name-firefox/test-failed-1.png]]
+
+[[ATTACHMENT|membros-Membros-Management-should-search-membros-by-name-firefox/video.webm]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Membros Management › should open create membro modal" classname="membros.spec.ts" time="1.432">
+<failure message="membros.spec.ts:98:3 should open create membro modal" type="FAILURE">
+<![CDATA[  [firefox] › membros.spec.ts:98:3 › Membros Management › should open create membro modal ──────────
+
+    Error: page.evaluate: The operation is insecure.
+    @debugger eval code line 290 > eval:2:5
+    evaluate@debugger eval code:292:16
+    @debugger eval code:1:44
+
+        at @debugger eval code line 290 > eval:2:5
+        at evaluate@debugger eval code:292:16
+        at @debugger eval code:1:44
+        at authenticate (/workspaces/ClubManager/frontend/e2e/membros.spec.ts:5:14)
+        at /workspaces/ClubManager/frontend/e2e/membros.spec.ts:18:11
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/membros-Membros-Management-should-open-create-membro-modal-firefox/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/membros-Membros-Management-should-open-create-membro-modal-firefox/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|membros-Membros-Management-should-open-create-membro-modal-firefox/test-failed-1.png]]
+
+[[ATTACHMENT|membros-Membros-Management-should-open-create-membro-modal-firefox/video.webm]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Membros Management › should create new membro" classname="membros.spec.ts" time="1.55">
+<failure message="membros.spec.ts:106:3 should create new membro" type="FAILURE">
+<![CDATA[  [firefox] › membros.spec.ts:106:3 › Membros Management › should create new membro ────────────────
+
+    Error: page.evaluate: The operation is insecure.
+    @debugger eval code line 290 > eval:2:5
+    evaluate@debugger eval code:292:16
+    @debugger eval code:1:44
+
+        at @debugger eval code line 290 > eval:2:5
+        at evaluate@debugger eval code:292:16
+        at @debugger eval code:1:44
+        at authenticate (/workspaces/ClubManager/frontend/e2e/membros.spec.ts:5:14)
+        at /workspaces/ClubManager/frontend/e2e/membros.spec.ts:18:11
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/membros-Membros-Management-should-create-new-membro-firefox/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/membros-Membros-Management-should-create-new-membro-firefox/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|membros-Membros-Management-should-create-new-membro-firefox/test-failed-1.png]]
+
+[[ATTACHMENT|membros-Membros-Management-should-create-new-membro-firefox/video.webm]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Membros Management › should view membro details" classname="membros.spec.ts" time="1.404">
+<failure message="membros.spec.ts:136:3 should view membro details" type="FAILURE">
+<![CDATA[  [firefox] › membros.spec.ts:136:3 › Membros Management › should view membro details ──────────────
+
+    Error: page.evaluate: The operation is insecure.
+    @debugger eval code line 290 > eval:2:5
+    evaluate@debugger eval code:292:16
+    @debugger eval code:1:44
+
+        at @debugger eval code line 290 > eval:2:5
+        at evaluate@debugger eval code:292:16
+        at @debugger eval code:1:44
+        at authenticate (/workspaces/ClubManager/frontend/e2e/membros.spec.ts:5:14)
+        at /workspaces/ClubManager/frontend/e2e/membros.spec.ts:18:11
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/membros-Membros-Management-should-view-membro-details-firefox/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/membros-Membros-Management-should-view-membro-details-firefox/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|membros-Membros-Management-should-view-membro-details-firefox/test-failed-1.png]]
+
+[[ATTACHMENT|membros-Membros-Management-should-view-membro-details-firefox/video.webm]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Membros Management › should edit membro" classname="membros.spec.ts" time="1.47">
+<failure message="membros.spec.ts:143:3 should edit membro" type="FAILURE">
+<![CDATA[  [firefox] › membros.spec.ts:143:3 › Membros Management › should edit membro ──────────────────────
+
+    Error: page.evaluate: The operation is insecure.
+    @debugger eval code line 290 > eval:2:5
+    evaluate@debugger eval code:292:16
+    @debugger eval code:1:44
+
+        at @debugger eval code line 290 > eval:2:5
+        at evaluate@debugger eval code:292:16
+        at @debugger eval code:1:44
+        at authenticate (/workspaces/ClubManager/frontend/e2e/membros.spec.ts:5:14)
+        at /workspaces/ClubManager/frontend/e2e/membros.spec.ts:18:11
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/membros-Membros-Management-should-edit-membro-firefox/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/membros-Membros-Management-should-edit-membro-firefox/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|membros-Membros-Management-should-edit-membro-firefox/test-failed-1.png]]
+
+[[ATTACHMENT|membros-Membros-Management-should-edit-membro-firefox/video.webm]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Membros Management › should delete membro with confirmation" classname="membros.spec.ts" time="1.536">
+<failure message="membros.spec.ts:152:3 should delete membro with confirmation" type="FAILURE">
+<![CDATA[  [firefox] › membros.spec.ts:152:3 › Membros Management › should delete membro with confirmation ──
+
+    Error: page.evaluate: The operation is insecure.
+    @debugger eval code line 290 > eval:2:5
+    evaluate@debugger eval code:292:16
+    @debugger eval code:1:44
+
+        at @debugger eval code line 290 > eval:2:5
+        at evaluate@debugger eval code:292:16
+        at @debugger eval code:1:44
+        at authenticate (/workspaces/ClubManager/frontend/e2e/membros.spec.ts:5:14)
+        at /workspaces/ClubManager/frontend/e2e/membros.spec.ts:18:11
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/membros-Membros-Management-32c45-te-membro-with-confirmation-firefox/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/membros-Membros-Management-32c45-te-membro-with-confirmation-firefox/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|membros-Membros-Management-32c45-te-membro-with-confirmation-firefox/test-failed-1.png]]
+
+[[ATTACHMENT|membros-Membros-Management-32c45-te-membro-with-confirmation-firefox/video.webm]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Membros Management › should paginate through membros" classname="membros.spec.ts" time="1.527">
+<failure message="membros.spec.ts:160:3 should paginate through membros" type="FAILURE">
+<![CDATA[  [firefox] › membros.spec.ts:160:3 › Membros Management › should paginate through membros ─────────
+
+    Error: page.evaluate: The operation is insecure.
+    @debugger eval code line 290 > eval:2:5
+    evaluate@debugger eval code:292:16
+    @debugger eval code:1:44
+
+        at @debugger eval code line 290 > eval:2:5
+        at evaluate@debugger eval code:292:16
+        at @debugger eval code:1:44
+        at authenticate (/workspaces/ClubManager/frontend/e2e/membros.spec.ts:5:14)
+        at /workspaces/ClubManager/frontend/e2e/membros.spec.ts:18:11
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/membros-Membros-Management-should-paginate-through-membros-firefox/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/membros-Membros-Management-should-paginate-through-membros-firefox/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|membros-Membros-Management-should-paginate-through-membros-firefox/test-failed-1.png]]
+
+[[ATTACHMENT|membros-Membros-Management-should-paginate-through-membros-firefox/video.webm]]
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="auth.spec.ts" timestamp="2026-01-23T14:37:04.019Z" hostname="webkit" tests="5" failures="5" skipped="0" time="138.363" errors="0">
+<testcase name="Authentication Flow › should display login form" classname="auth.spec.ts" time="7.141">
+<failure message="auth.spec.ts:8:3 should display login form" type="FAILURE">
+<![CDATA[  [webkit] › auth.spec.ts:8:3 › Authentication Flow › should display login form ────────────────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('input[type="email"]')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" with timeout 5000ms
+      - waiting for locator('input[type="email"]')
+
+
+       7 |
+       8 |   test('should display login form', async ({ page }) => {
+    >  9 |     await expect(page.locator('input[type="email"]')).toBeVisible();
+         |                                                       ^
+      10 |     await expect(page.locator('input[type="password"]')).toBeVisible();
+      11 |     await expect(page.locator('button[type="submit"]')).toBeVisible();
+      12 |   });
+        at /workspaces/ClubManager/frontend/e2e/auth.spec.ts:9:55
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/auth-Authentication-Flow-should-display-login-form-webkit/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/auth-Authentication-Flow-should-display-login-form-webkit/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/auth-Authentication-Flow-should-display-login-form-webkit/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|auth-Authentication-Flow-should-display-login-form-webkit/test-failed-1.png]]
+
+[[ATTACHMENT|auth-Authentication-Flow-should-display-login-form-webkit/video.webm]]
+
+[[ATTACHMENT|auth-Authentication-Flow-should-display-login-form-webkit/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Authentication Flow › should show validation errors for empty fields" classname="auth.spec.ts" time="32.937">
+<failure message="auth.spec.ts:14:3 should show validation errors for empty fields" type="FAILURE">
+<![CDATA[  [webkit] › auth.spec.ts:14:3 › Authentication Flow › should show validation errors for empty fields 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for locator('button[type="submit"]')
+
+
+      13 |
+      14 |   test('should show validation errors for empty fields', async ({ page }) => {
+    > 15 |     await page.locator('button[type="submit"]').click();
+         |                                                 ^
+      16 |     
+      17 |     await expect(page.locator('text=/email.*required/i')).toBeVisible();
+      18 |     await expect(page.locator('text=/password.*required/i')).toBeVisible();
+        at /workspaces/ClubManager/frontend/e2e/auth.spec.ts:15:49
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/auth-Authentication-Flow-s-4800c-ion-errors-for-empty-fields-webkit/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/auth-Authentication-Flow-s-4800c-ion-errors-for-empty-fields-webkit/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/auth-Authentication-Flow-s-4800c-ion-errors-for-empty-fields-webkit/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|auth-Authentication-Flow-s-4800c-ion-errors-for-empty-fields-webkit/test-failed-1.png]]
+
+[[ATTACHMENT|auth-Authentication-Flow-s-4800c-ion-errors-for-empty-fields-webkit/video.webm]]
+
+[[ATTACHMENT|auth-Authentication-Flow-s-4800c-ion-errors-for-empty-fields-webkit/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Authentication Flow › should show error for invalid credentials" classname="auth.spec.ts" time="32.91">
+<failure message="auth.spec.ts:21:3 should show error for invalid credentials" type="FAILURE">
+<![CDATA[  [webkit] › auth.spec.ts:21:3 › Authentication Flow › should show error for invalid credentials ───
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.fill: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for locator('input[type="email"]')
+
+
+      20 |
+      21 |   test('should show error for invalid credentials', async ({ page }) => {
+    > 22 |     await page.locator('input[type="email"]').fill('invalid@example.com');
+         |                                               ^
+      23 |     await page.locator('input[type="password"]').fill('wrongpassword');
+      24 |     await page.locator('button[type="submit"]').click();
+      25 |
+        at /workspaces/ClubManager/frontend/e2e/auth.spec.ts:22:47
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/auth-Authentication-Flow-s-c1b41-ror-for-invalid-credentials-webkit/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/auth-Authentication-Flow-s-c1b41-ror-for-invalid-credentials-webkit/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/auth-Authentication-Flow-s-c1b41-ror-for-invalid-credentials-webkit/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|auth-Authentication-Flow-s-c1b41-ror-for-invalid-credentials-webkit/test-failed-1.png]]
+
+[[ATTACHMENT|auth-Authentication-Flow-s-c1b41-ror-for-invalid-credentials-webkit/video.webm]]
+
+[[ATTACHMENT|auth-Authentication-Flow-s-c1b41-ror-for-invalid-credentials-webkit/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Authentication Flow › should login successfully with valid credentials" classname="auth.spec.ts" time="32.86">
+<failure message="auth.spec.ts:29:3 should login successfully with valid credentials" type="FAILURE">
+<![CDATA[  [webkit] › auth.spec.ts:29:3 › Authentication Flow › should login successfully with valid credentials 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.fill: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for locator('input[type="email"]')
+
+
+      44 |     });
+      45 |
+    > 46 |     await page.locator('input[type="email"]').fill('admin@example.com');
+         |                                               ^
+      47 |     await page.locator('input[type="password"]').fill('password123');
+      48 |     await page.locator('button[type="submit"]').click();
+      49 |
+        at /workspaces/ClubManager/frontend/e2e/auth.spec.ts:46:47
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/auth-Authentication-Flow-s-74377-ully-with-valid-credentials-webkit/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/auth-Authentication-Flow-s-74377-ully-with-valid-credentials-webkit/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/auth-Authentication-Flow-s-74377-ully-with-valid-credentials-webkit/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|auth-Authentication-Flow-s-74377-ully-with-valid-credentials-webkit/test-failed-1.png]]
+
+[[ATTACHMENT|auth-Authentication-Flow-s-74377-ully-with-valid-credentials-webkit/video.webm]]
+
+[[ATTACHMENT|auth-Authentication-Flow-s-74377-ully-with-valid-credentials-webkit/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Authentication Flow › should logout successfully" classname="auth.spec.ts" time="32.515">
+<failure message="auth.spec.ts:54:3 should logout successfully" type="FAILURE">
+<![CDATA[  [webkit] › auth.spec.ts:54:3 › Authentication Flow › should logout successfully ──────────────────
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for locator('[data-testid="logout-button"]')
+
+
+      65 |     
+      66 |     // Click logout button
+    > 67 |     await page.locator('[data-testid="logout-button"]').click();
+         |                                                         ^
+      68 |     
+      69 |     // Verificar redirecionamento para login
+      70 |     await expect(page).toHaveURL(/.*login/);
+        at /workspaces/ClubManager/frontend/e2e/auth.spec.ts:67:57
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/auth-Authentication-Flow-should-logout-successfully-webkit/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/auth-Authentication-Flow-should-logout-successfully-webkit/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/auth-Authentication-Flow-should-logout-successfully-webkit/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|auth-Authentication-Flow-should-logout-successfully-webkit/test-failed-1.png]]
+
+[[ATTACHMENT|auth-Authentication-Flow-should-logout-successfully-webkit/video.webm]]
+
+[[ATTACHMENT|auth-Authentication-Flow-should-logout-successfully-webkit/error-context.md]]
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="membros.spec.ts" timestamp="2026-01-23T14:37:04.019Z" hostname="webkit" tests="9" failures="9" skipped="0" time="5.194" errors="0">
+<testcase name="Membros Management › should display membros list" classname="membros.spec.ts" time="0.75">
+<failure message="membros.spec.ts:59:3 should display membros list" type="FAILURE">
+<![CDATA[  [webkit] › membros.spec.ts:59:3 › Membros Management › should display membros list ───────────────
+
+    Error: page.evaluate: SecurityError: The operation is insecure.
+
+      3 | // Helper para autenticação
+      4 | async function authenticate(page: Page) {
+    > 5 |   await page.evaluate(() => {
+        |              ^
+      6 |     localStorage.setItem('auth_token', 'mock-token-123');
+      7 |     localStorage.setItem('user', JSON.stringify({
+      8 |       id: 1,
+        at authenticate (/workspaces/ClubManager/frontend/e2e/membros.spec.ts:5:14)
+        at /workspaces/ClubManager/frontend/e2e/membros.spec.ts:18:11
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/membros-Membros-Management-should-display-membros-list-webkit/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/membros-Membros-Management-should-display-membros-list-webkit/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|membros-Membros-Management-should-display-membros-list-webkit/test-failed-1.png]]
+
+[[ATTACHMENT|membros-Membros-Management-should-display-membros-list-webkit/video.webm]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Membros Management › should filter membros by status" classname="membros.spec.ts" time="0.502">
+<failure message="membros.spec.ts:66:3 should filter membros by status" type="FAILURE">
+<![CDATA[  [webkit] › membros.spec.ts:66:3 › Membros Management › should filter membros by status ───────────
+
+    Error: page.evaluate: SecurityError: The operation is insecure.
+
+      3 | // Helper para autenticação
+      4 | async function authenticate(page: Page) {
+    > 5 |   await page.evaluate(() => {
+        |              ^
+      6 |     localStorage.setItem('auth_token', 'mock-token-123');
+      7 |     localStorage.setItem('user', JSON.stringify({
+      8 |       id: 1,
+        at authenticate (/workspaces/ClubManager/frontend/e2e/membros.spec.ts:5:14)
+        at /workspaces/ClubManager/frontend/e2e/membros.spec.ts:18:11
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/membros-Membros-Management-should-filter-membros-by-status-webkit/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|membros-Membros-Management-should-filter-membros-by-status-webkit/test-failed-1.png]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Membros Management › should search membros by name" classname="membros.spec.ts" time="0.51">
+<failure message="membros.spec.ts:91:3 should search membros by name" type="FAILURE">
+<![CDATA[  [webkit] › membros.spec.ts:91:3 › Membros Management › should search membros by name ─────────────
+
+    Error: page.evaluate: SecurityError: The operation is insecure.
+
+      3 | // Helper para autenticação
+      4 | async function authenticate(page: Page) {
+    > 5 |   await page.evaluate(() => {
+        |              ^
+      6 |     localStorage.setItem('auth_token', 'mock-token-123');
+      7 |     localStorage.setItem('user', JSON.stringify({
+      8 |       id: 1,
+        at authenticate (/workspaces/ClubManager/frontend/e2e/membros.spec.ts:5:14)
+        at /workspaces/ClubManager/frontend/e2e/membros.spec.ts:18:11
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/membros-Membros-Management-should-search-membros-by-name-webkit/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|membros-Membros-Management-should-search-membros-by-name-webkit/test-failed-1.png]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Membros Management › should open create membro modal" classname="membros.spec.ts" time="0.495">
+<failure message="membros.spec.ts:98:3 should open create membro modal" type="FAILURE">
+<![CDATA[  [webkit] › membros.spec.ts:98:3 › Membros Management › should open create membro modal ───────────
+
+    Error: page.evaluate: SecurityError: The operation is insecure.
+
+      3 | // Helper para autenticação
+      4 | async function authenticate(page: Page) {
+    > 5 |   await page.evaluate(() => {
+        |              ^
+      6 |     localStorage.setItem('auth_token', 'mock-token-123');
+      7 |     localStorage.setItem('user', JSON.stringify({
+      8 |       id: 1,
+        at authenticate (/workspaces/ClubManager/frontend/e2e/membros.spec.ts:5:14)
+        at /workspaces/ClubManager/frontend/e2e/membros.spec.ts:18:11
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/membros-Membros-Management-should-open-create-membro-modal-webkit/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|membros-Membros-Management-should-open-create-membro-modal-webkit/test-failed-1.png]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Membros Management › should create new membro" classname="membros.spec.ts" time="0.696">
+<failure message="membros.spec.ts:106:3 should create new membro" type="FAILURE">
+<![CDATA[  [webkit] › membros.spec.ts:106:3 › Membros Management › should create new membro ─────────────────
+
+    Error: page.evaluate: SecurityError: The operation is insecure.
+
+      3 | // Helper para autenticação
+      4 | async function authenticate(page: Page) {
+    > 5 |   await page.evaluate(() => {
+        |              ^
+      6 |     localStorage.setItem('auth_token', 'mock-token-123');
+      7 |     localStorage.setItem('user', JSON.stringify({
+      8 |       id: 1,
+        at authenticate (/workspaces/ClubManager/frontend/e2e/membros.spec.ts:5:14)
+        at /workspaces/ClubManager/frontend/e2e/membros.spec.ts:18:11
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/membros-Membros-Management-should-create-new-membro-webkit/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/membros-Membros-Management-should-create-new-membro-webkit/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|membros-Membros-Management-should-create-new-membro-webkit/test-failed-1.png]]
+
+[[ATTACHMENT|membros-Membros-Management-should-create-new-membro-webkit/video.webm]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Membros Management › should view membro details" classname="membros.spec.ts" time="0.546">
+<failure message="membros.spec.ts:136:3 should view membro details" type="FAILURE">
+<![CDATA[  [webkit] › membros.spec.ts:136:3 › Membros Management › should view membro details ───────────────
+
+    Error: page.evaluate: SecurityError: The operation is insecure.
+
+      3 | // Helper para autenticação
+      4 | async function authenticate(page: Page) {
+    > 5 |   await page.evaluate(() => {
+        |              ^
+      6 |     localStorage.setItem('auth_token', 'mock-token-123');
+      7 |     localStorage.setItem('user', JSON.stringify({
+      8 |       id: 1,
+        at authenticate (/workspaces/ClubManager/frontend/e2e/membros.spec.ts:5:14)
+        at /workspaces/ClubManager/frontend/e2e/membros.spec.ts:18:11
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/membros-Membros-Management-should-view-membro-details-webkit/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|membros-Membros-Management-should-view-membro-details-webkit/test-failed-1.png]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Membros Management › should edit membro" classname="membros.spec.ts" time="0.511">
+<failure message="membros.spec.ts:143:3 should edit membro" type="FAILURE">
+<![CDATA[  [webkit] › membros.spec.ts:143:3 › Membros Management › should edit membro ───────────────────────
+
+    Error: page.evaluate: SecurityError: The operation is insecure.
+
+      3 | // Helper para autenticação
+      4 | async function authenticate(page: Page) {
+    > 5 |   await page.evaluate(() => {
+        |              ^
+      6 |     localStorage.setItem('auth_token', 'mock-token-123');
+      7 |     localStorage.setItem('user', JSON.stringify({
+      8 |       id: 1,
+        at authenticate (/workspaces/ClubManager/frontend/e2e/membros.spec.ts:5:14)
+        at /workspaces/ClubManager/frontend/e2e/membros.spec.ts:18:11
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/membros-Membros-Management-should-edit-membro-webkit/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|membros-Membros-Management-should-edit-membro-webkit/test-failed-1.png]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Membros Management › should delete membro with confirmation" classname="membros.spec.ts" time="0.669">
+<failure message="membros.spec.ts:152:3 should delete membro with confirmation" type="FAILURE">
+<![CDATA[  [webkit] › membros.spec.ts:152:3 › Membros Management › should delete membro with confirmation ───
+
+    Error: page.evaluate: SecurityError: The operation is insecure.
+
+      3 | // Helper para autenticação
+      4 | async function authenticate(page: Page) {
+    > 5 |   await page.evaluate(() => {
+        |              ^
+      6 |     localStorage.setItem('auth_token', 'mock-token-123');
+      7 |     localStorage.setItem('user', JSON.stringify({
+      8 |       id: 1,
+        at authenticate (/workspaces/ClubManager/frontend/e2e/membros.spec.ts:5:14)
+        at /workspaces/ClubManager/frontend/e2e/membros.spec.ts:18:11
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/membros-Membros-Management-32c45-te-membro-with-confirmation-webkit/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/membros-Membros-Management-32c45-te-membro-with-confirmation-webkit/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|membros-Membros-Management-32c45-te-membro-with-confirmation-webkit/test-failed-1.png]]
+
+[[ATTACHMENT|membros-Membros-Management-32c45-te-membro-with-confirmation-webkit/video.webm]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Membros Management › should paginate through membros" classname="membros.spec.ts" time="0.515">
+<failure message="membros.spec.ts:160:3 should paginate through membros" type="FAILURE">
+<![CDATA[  [webkit] › membros.spec.ts:160:3 › Membros Management › should paginate through membros ──────────
+
+    Error: page.evaluate: SecurityError: The operation is insecure.
+
+      3 | // Helper para autenticação
+      4 | async function authenticate(page: Page) {
+    > 5 |   await page.evaluate(() => {
+        |              ^
+      6 |     localStorage.setItem('auth_token', 'mock-token-123');
+      7 |     localStorage.setItem('user', JSON.stringify({
+      8 |       id: 1,
+        at authenticate (/workspaces/ClubManager/frontend/e2e/membros.spec.ts:5:14)
+        at /workspaces/ClubManager/frontend/e2e/membros.spec.ts:18:11
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/membros-Membros-Management-should-paginate-through-membros-webkit/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|membros-Membros-Management-should-paginate-through-membros-webkit/test-failed-1.png]]
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="auth.spec.ts" timestamp="2026-01-23T14:37:04.019Z" hostname="Mobile Chrome" tests="5" failures="5" skipped="0" time="134.861" errors="0">
+<testcase name="Authentication Flow › should display login form" classname="auth.spec.ts" time="5.966">
+<failure message="auth.spec.ts:8:3 should display login form" type="FAILURE">
+<![CDATA[  [Mobile Chrome] › auth.spec.ts:8:3 › Authentication Flow › should display login form ─────────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('input[type="email"]')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" with timeout 5000ms
+      - waiting for locator('input[type="email"]')
+
+
+       7 |
+       8 |   test('should display login form', async ({ page }) => {
+    >  9 |     await expect(page.locator('input[type="email"]')).toBeVisible();
+         |                                                       ^
+      10 |     await expect(page.locator('input[type="password"]')).toBeVisible();
+      11 |     await expect(page.locator('button[type="submit"]')).toBeVisible();
+      12 |   });
+        at /workspaces/ClubManager/frontend/e2e/auth.spec.ts:9:55
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/auth-Authentication-Flow-should-display-login-form-Mobile-Chrome/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/auth-Authentication-Flow-should-display-login-form-Mobile-Chrome/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/auth-Authentication-Flow-should-display-login-form-Mobile-Chrome/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|auth-Authentication-Flow-should-display-login-form-Mobile-Chrome/test-failed-1.png]]
+
+[[ATTACHMENT|auth-Authentication-Flow-should-display-login-form-Mobile-Chrome/video.webm]]
+
+[[ATTACHMENT|auth-Authentication-Flow-should-display-login-form-Mobile-Chrome/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Authentication Flow › should show validation errors for empty fields" classname="auth.spec.ts" time="32.209">
+<failure message="auth.spec.ts:14:3 should show validation errors for empty fields" type="FAILURE">
+<![CDATA[  [Mobile Chrome] › auth.spec.ts:14:3 › Authentication Flow › should show validation errors for empty fields 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for locator('button[type="submit"]')
+
+
+      13 |
+      14 |   test('should show validation errors for empty fields', async ({ page }) => {
+    > 15 |     await page.locator('button[type="submit"]').click();
+         |                                                 ^
+      16 |     
+      17 |     await expect(page.locator('text=/email.*required/i')).toBeVisible();
+      18 |     await expect(page.locator('text=/password.*required/i')).toBeVisible();
+        at /workspaces/ClubManager/frontend/e2e/auth.spec.ts:15:49
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/auth-Authentication-Flow-s-4800c-ion-errors-for-empty-fields-Mobile-Chrome/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/auth-Authentication-Flow-s-4800c-ion-errors-for-empty-fields-Mobile-Chrome/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/auth-Authentication-Flow-s-4800c-ion-errors-for-empty-fields-Mobile-Chrome/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|auth-Authentication-Flow-s-4800c-ion-errors-for-empty-fields-Mobile-Chrome/test-failed-1.png]]
+
+[[ATTACHMENT|auth-Authentication-Flow-s-4800c-ion-errors-for-empty-fields-Mobile-Chrome/video.webm]]
+
+[[ATTACHMENT|auth-Authentication-Flow-s-4800c-ion-errors-for-empty-fields-Mobile-Chrome/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Authentication Flow › should show error for invalid credentials" classname="auth.spec.ts" time="32.213">
+<failure message="auth.spec.ts:21:3 should show error for invalid credentials" type="FAILURE">
+<![CDATA[  [Mobile Chrome] › auth.spec.ts:21:3 › Authentication Flow › should show error for invalid credentials 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.fill: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for locator('input[type="email"]')
+
+
+      20 |
+      21 |   test('should show error for invalid credentials', async ({ page }) => {
+    > 22 |     await page.locator('input[type="email"]').fill('invalid@example.com');
+         |                                               ^
+      23 |     await page.locator('input[type="password"]').fill('wrongpassword');
+      24 |     await page.locator('button[type="submit"]').click();
+      25 |
+        at /workspaces/ClubManager/frontend/e2e/auth.spec.ts:22:47
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/auth-Authentication-Flow-s-c1b41-ror-for-invalid-credentials-Mobile-Chrome/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/auth-Authentication-Flow-s-c1b41-ror-for-invalid-credentials-Mobile-Chrome/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/auth-Authentication-Flow-s-c1b41-ror-for-invalid-credentials-Mobile-Chrome/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|auth-Authentication-Flow-s-c1b41-ror-for-invalid-credentials-Mobile-Chrome/test-failed-1.png]]
+
+[[ATTACHMENT|auth-Authentication-Flow-s-c1b41-ror-for-invalid-credentials-Mobile-Chrome/video.webm]]
+
+[[ATTACHMENT|auth-Authentication-Flow-s-c1b41-ror-for-invalid-credentials-Mobile-Chrome/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Authentication Flow › should login successfully with valid credentials" classname="auth.spec.ts" time="32.232">
+<failure message="auth.spec.ts:29:3 should login successfully with valid credentials" type="FAILURE">
+<![CDATA[  [Mobile Chrome] › auth.spec.ts:29:3 › Authentication Flow › should login successfully with valid credentials 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.fill: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for locator('input[type="email"]')
+
+
+      44 |     });
+      45 |
+    > 46 |     await page.locator('input[type="email"]').fill('admin@example.com');
+         |                                               ^
+      47 |     await page.locator('input[type="password"]').fill('password123');
+      48 |     await page.locator('button[type="submit"]').click();
+      49 |
+        at /workspaces/ClubManager/frontend/e2e/auth.spec.ts:46:47
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/auth-Authentication-Flow-s-74377-ully-with-valid-credentials-Mobile-Chrome/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/auth-Authentication-Flow-s-74377-ully-with-valid-credentials-Mobile-Chrome/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/auth-Authentication-Flow-s-74377-ully-with-valid-credentials-Mobile-Chrome/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|auth-Authentication-Flow-s-74377-ully-with-valid-credentials-Mobile-Chrome/test-failed-1.png]]
+
+[[ATTACHMENT|auth-Authentication-Flow-s-74377-ully-with-valid-credentials-Mobile-Chrome/video.webm]]
+
+[[ATTACHMENT|auth-Authentication-Flow-s-74377-ully-with-valid-credentials-Mobile-Chrome/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Authentication Flow › should logout successfully" classname="auth.spec.ts" time="32.241">
+<failure message="auth.spec.ts:54:3 should logout successfully" type="FAILURE">
+<![CDATA[  [Mobile Chrome] › auth.spec.ts:54:3 › Authentication Flow › should logout successfully ───────────
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for locator('[data-testid="logout-button"]')
+
+
+      65 |     
+      66 |     // Click logout button
+    > 67 |     await page.locator('[data-testid="logout-button"]').click();
+         |                                                         ^
+      68 |     
+      69 |     // Verificar redirecionamento para login
+      70 |     await expect(page).toHaveURL(/.*login/);
+        at /workspaces/ClubManager/frontend/e2e/auth.spec.ts:67:57
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/auth-Authentication-Flow-should-logout-successfully-Mobile-Chrome/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/auth-Authentication-Flow-should-logout-successfully-Mobile-Chrome/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/auth-Authentication-Flow-should-logout-successfully-Mobile-Chrome/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|auth-Authentication-Flow-should-logout-successfully-Mobile-Chrome/test-failed-1.png]]
+
+[[ATTACHMENT|auth-Authentication-Flow-should-logout-successfully-Mobile-Chrome/video.webm]]
+
+[[ATTACHMENT|auth-Authentication-Flow-should-logout-successfully-Mobile-Chrome/error-context.md]]
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="membros.spec.ts" timestamp="2026-01-23T14:37:04.019Z" hostname="Mobile Chrome" tests="9" failures="9" skipped="0" time="3.326" errors="0">
+<testcase name="Membros Management › should display membros list" classname="membros.spec.ts" time="0.693">
+<failure message="membros.spec.ts:59:3 should display membros list" type="FAILURE">
+<![CDATA[  [Mobile Chrome] › membros.spec.ts:59:3 › Membros Management › should display membros list ────────
+
+    Error: page.evaluate: SecurityError: Failed to read the 'localStorage' property from 'Window': Access is denied for this document.
+        at UtilityScript.evaluate (<anonymous>:292:16)
+        at UtilityScript.<anonymous> (<anonymous>:1:44)
+        at UtilityScript.evaluate (<anonymous>:292:16)
+        at UtilityScript.<anonymous> (<anonymous>:1:44)
+        at authenticate (/workspaces/ClubManager/frontend/e2e/membros.spec.ts:5:14)
+        at /workspaces/ClubManager/frontend/e2e/membros.spec.ts:18:11
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/membros-Membros-Management-should-display-membros-list-Mobile-Chrome/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/membros-Membros-Management-should-display-membros-list-Mobile-Chrome/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|membros-Membros-Management-should-display-membros-list-Mobile-Chrome/test-failed-1.png]]
+
+[[ATTACHMENT|membros-Membros-Management-should-display-membros-list-Mobile-Chrome/video.webm]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Membros Management › should filter membros by status" classname="membros.spec.ts" time="0.325">
+<failure message="membros.spec.ts:66:3 should filter membros by status" type="FAILURE">
+<![CDATA[  [Mobile Chrome] › membros.spec.ts:66:3 › Membros Management › should filter membros by status ────
+
+    Error: page.evaluate: SecurityError: Failed to read the 'localStorage' property from 'Window': Access is denied for this document.
+        at UtilityScript.evaluate (<anonymous>:292:16)
+        at UtilityScript.<anonymous> (<anonymous>:1:44)
+        at UtilityScript.evaluate (<anonymous>:292:16)
+        at UtilityScript.<anonymous> (<anonymous>:1:44)
+        at authenticate (/workspaces/ClubManager/frontend/e2e/membros.spec.ts:5:14)
+        at /workspaces/ClubManager/frontend/e2e/membros.spec.ts:18:11
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/membros-Membros-Management-should-filter-membros-by-status-Mobile-Chrome/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/membros-Membros-Management-should-filter-membros-by-status-Mobile-Chrome/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|membros-Membros-Management-should-filter-membros-by-status-Mobile-Chrome/test-failed-1.png]]
+
+[[ATTACHMENT|membros-Membros-Management-should-filter-membros-by-status-Mobile-Chrome/video.webm]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Membros Management › should search membros by name" classname="membros.spec.ts" time="0.324">
+<failure message="membros.spec.ts:91:3 should search membros by name" type="FAILURE">
+<![CDATA[  [Mobile Chrome] › membros.spec.ts:91:3 › Membros Management › should search membros by name ──────
+
+    Error: page.evaluate: SecurityError: Failed to read the 'localStorage' property from 'Window': Access is denied for this document.
+        at UtilityScript.evaluate (<anonymous>:292:16)
+        at UtilityScript.<anonymous> (<anonymous>:1:44)
+        at UtilityScript.evaluate (<anonymous>:292:16)
+        at UtilityScript.<anonymous> (<anonymous>:1:44)
+        at authenticate (/workspaces/ClubManager/frontend/e2e/membros.spec.ts:5:14)
+        at /workspaces/ClubManager/frontend/e2e/membros.spec.ts:18:11
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/membros-Membros-Management-should-search-membros-by-name-Mobile-Chrome/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/membros-Membros-Management-should-search-membros-by-name-Mobile-Chrome/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|membros-Membros-Management-should-search-membros-by-name-Mobile-Chrome/test-failed-1.png]]
+
+[[ATTACHMENT|membros-Membros-Management-should-search-membros-by-name-Mobile-Chrome/video.webm]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Membros Management › should open create membro modal" classname="membros.spec.ts" time="0.328">
+<failure message="membros.spec.ts:98:3 should open create membro modal" type="FAILURE">
+<![CDATA[  [Mobile Chrome] › membros.spec.ts:98:3 › Membros Management › should open create membro modal ────
+
+    Error: page.evaluate: SecurityError: Failed to read the 'localStorage' property from 'Window': Access is denied for this document.
+        at UtilityScript.evaluate (<anonymous>:292:16)
+        at UtilityScript.<anonymous> (<anonymous>:1:44)
+        at UtilityScript.evaluate (<anonymous>:292:16)
+        at UtilityScript.<anonymous> (<anonymous>:1:44)
+        at authenticate (/workspaces/ClubManager/frontend/e2e/membros.spec.ts:5:14)
+        at /workspaces/ClubManager/frontend/e2e/membros.spec.ts:18:11
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/membros-Membros-Management-should-open-create-membro-modal-Mobile-Chrome/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/membros-Membros-Management-should-open-create-membro-modal-Mobile-Chrome/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|membros-Membros-Management-should-open-create-membro-modal-Mobile-Chrome/test-failed-1.png]]
+
+[[ATTACHMENT|membros-Membros-Management-should-open-create-membro-modal-Mobile-Chrome/video.webm]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Membros Management › should create new membro" classname="membros.spec.ts" time="0.347">
+<failure message="membros.spec.ts:106:3 should create new membro" type="FAILURE">
+<![CDATA[  [Mobile Chrome] › membros.spec.ts:106:3 › Membros Management › should create new membro ──────────
+
+    Error: page.evaluate: SecurityError: Failed to read the 'localStorage' property from 'Window': Access is denied for this document.
+        at UtilityScript.evaluate (<anonymous>:292:16)
+        at UtilityScript.<anonymous> (<anonymous>:1:44)
+        at UtilityScript.evaluate (<anonymous>:292:16)
+        at UtilityScript.<anonymous> (<anonymous>:1:44)
+        at authenticate (/workspaces/ClubManager/frontend/e2e/membros.spec.ts:5:14)
+        at /workspaces/ClubManager/frontend/e2e/membros.spec.ts:18:11
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/membros-Membros-Management-should-create-new-membro-Mobile-Chrome/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/membros-Membros-Management-should-create-new-membro-Mobile-Chrome/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|membros-Membros-Management-should-create-new-membro-Mobile-Chrome/test-failed-1.png]]
+
+[[ATTACHMENT|membros-Membros-Management-should-create-new-membro-Mobile-Chrome/video.webm]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Membros Management › should view membro details" classname="membros.spec.ts" time="0.332">
+<failure message="membros.spec.ts:136:3 should view membro details" type="FAILURE">
+<![CDATA[  [Mobile Chrome] › membros.spec.ts:136:3 › Membros Management › should view membro details ────────
+
+    Error: page.evaluate: SecurityError: Failed to read the 'localStorage' property from 'Window': Access is denied for this document.
+        at UtilityScript.evaluate (<anonymous>:292:16)
+        at UtilityScript.<anonymous> (<anonymous>:1:44)
+        at UtilityScript.evaluate (<anonymous>:292:16)
+        at UtilityScript.<anonymous> (<anonymous>:1:44)
+        at authenticate (/workspaces/ClubManager/frontend/e2e/membros.spec.ts:5:14)
+        at /workspaces/ClubManager/frontend/e2e/membros.spec.ts:18:11
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/membros-Membros-Management-should-view-membro-details-Mobile-Chrome/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/membros-Membros-Management-should-view-membro-details-Mobile-Chrome/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|membros-Membros-Management-should-view-membro-details-Mobile-Chrome/test-failed-1.png]]
+
+[[ATTACHMENT|membros-Membros-Management-should-view-membro-details-Mobile-Chrome/video.webm]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Membros Management › should edit membro" classname="membros.spec.ts" time="0.345">
+<failure message="membros.spec.ts:143:3 should edit membro" type="FAILURE">
+<![CDATA[  [Mobile Chrome] › membros.spec.ts:143:3 › Membros Management › should edit membro ────────────────
+
+    Error: page.evaluate: SecurityError: Failed to read the 'localStorage' property from 'Window': Access is denied for this document.
+        at UtilityScript.evaluate (<anonymous>:292:16)
+        at UtilityScript.<anonymous> (<anonymous>:1:44)
+        at UtilityScript.evaluate (<anonymous>:292:16)
+        at UtilityScript.<anonymous> (<anonymous>:1:44)
+        at authenticate (/workspaces/ClubManager/frontend/e2e/membros.spec.ts:5:14)
+        at /workspaces/ClubManager/frontend/e2e/membros.spec.ts:18:11
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/membros-Membros-Management-should-edit-membro-Mobile-Chrome/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/membros-Membros-Management-should-edit-membro-Mobile-Chrome/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|membros-Membros-Management-should-edit-membro-Mobile-Chrome/test-failed-1.png]]
+
+[[ATTACHMENT|membros-Membros-Management-should-edit-membro-Mobile-Chrome/video.webm]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Membros Management › should delete membro with confirmation" classname="membros.spec.ts" time="0.326">
+<failure message="membros.spec.ts:152:3 should delete membro with confirmation" type="FAILURE">
+<![CDATA[  [Mobile Chrome] › membros.spec.ts:152:3 › Membros Management › should delete membro with confirmation 
+
+    Error: page.evaluate: SecurityError: Failed to read the 'localStorage' property from 'Window': Access is denied for this document.
+        at UtilityScript.evaluate (<anonymous>:292:16)
+        at UtilityScript.<anonymous> (<anonymous>:1:44)
+        at UtilityScript.evaluate (<anonymous>:292:16)
+        at UtilityScript.<anonymous> (<anonymous>:1:44)
+        at authenticate (/workspaces/ClubManager/frontend/e2e/membros.spec.ts:5:14)
+        at /workspaces/ClubManager/frontend/e2e/membros.spec.ts:18:11
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/membros-Membros-Management-32c45-te-membro-with-confirmation-Mobile-Chrome/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/membros-Membros-Management-32c45-te-membro-with-confirmation-Mobile-Chrome/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|membros-Membros-Management-32c45-te-membro-with-confirmation-Mobile-Chrome/test-failed-1.png]]
+
+[[ATTACHMENT|membros-Membros-Management-32c45-te-membro-with-confirmation-Mobile-Chrome/video.webm]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Membros Management › should paginate through membros" classname="membros.spec.ts" time="0.306">
+<failure message="membros.spec.ts:160:3 should paginate through membros" type="FAILURE">
+<![CDATA[  [Mobile Chrome] › membros.spec.ts:160:3 › Membros Management › should paginate through membros ───
+
+    Error: page.evaluate: SecurityError: Failed to read the 'localStorage' property from 'Window': Access is denied for this document.
+        at UtilityScript.evaluate (<anonymous>:292:16)
+        at UtilityScript.<anonymous> (<anonymous>:1:44)
+        at UtilityScript.evaluate (<anonymous>:292:16)
+        at UtilityScript.<anonymous> (<anonymous>:1:44)
+        at authenticate (/workspaces/ClubManager/frontend/e2e/membros.spec.ts:5:14)
+        at /workspaces/ClubManager/frontend/e2e/membros.spec.ts:18:11
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/membros-Membros-Management-should-paginate-through-membros-Mobile-Chrome/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/membros-Membros-Management-should-paginate-through-membros-Mobile-Chrome/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|membros-Membros-Management-should-paginate-through-membros-Mobile-Chrome/test-failed-1.png]]
+
+[[ATTACHMENT|membros-Membros-Management-should-paginate-through-membros-Mobile-Chrome/video.webm]]
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="auth.spec.ts" timestamp="2026-01-23T14:37:04.019Z" hostname="Mobile Safari" tests="5" failures="5" skipped="0" time="134.227" errors="0">
+<testcase name="Authentication Flow › should display login form" classname="auth.spec.ts" time="6.337">
+<failure message="auth.spec.ts:8:3 should display login form" type="FAILURE">
+<![CDATA[  [Mobile Safari] › auth.spec.ts:8:3 › Authentication Flow › should display login form ─────────────
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: locator('input[type="email"]')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" with timeout 5000ms
+      - waiting for locator('input[type="email"]')
+
+
+       7 |
+       8 |   test('should display login form', async ({ page }) => {
+    >  9 |     await expect(page.locator('input[type="email"]')).toBeVisible();
+         |                                                       ^
+      10 |     await expect(page.locator('input[type="password"]')).toBeVisible();
+      11 |     await expect(page.locator('button[type="submit"]')).toBeVisible();
+      12 |   });
+        at /workspaces/ClubManager/frontend/e2e/auth.spec.ts:9:55
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/auth-Authentication-Flow-should-display-login-form-Mobile-Safari/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/auth-Authentication-Flow-should-display-login-form-Mobile-Safari/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/auth-Authentication-Flow-should-display-login-form-Mobile-Safari/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|auth-Authentication-Flow-should-display-login-form-Mobile-Safari/test-failed-1.png]]
+
+[[ATTACHMENT|auth-Authentication-Flow-should-display-login-form-Mobile-Safari/video.webm]]
+
+[[ATTACHMENT|auth-Authentication-Flow-should-display-login-form-Mobile-Safari/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Authentication Flow › should show validation errors for empty fields" classname="auth.spec.ts" time="31.993">
+<failure message="auth.spec.ts:14:3 should show validation errors for empty fields" type="FAILURE">
+<![CDATA[  [Mobile Safari] › auth.spec.ts:14:3 › Authentication Flow › should show validation errors for empty fields 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for locator('button[type="submit"]')
+
+
+      13 |
+      14 |   test('should show validation errors for empty fields', async ({ page }) => {
+    > 15 |     await page.locator('button[type="submit"]').click();
+         |                                                 ^
+      16 |     
+      17 |     await expect(page.locator('text=/email.*required/i')).toBeVisible();
+      18 |     await expect(page.locator('text=/password.*required/i')).toBeVisible();
+        at /workspaces/ClubManager/frontend/e2e/auth.spec.ts:15:49
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/auth-Authentication-Flow-s-4800c-ion-errors-for-empty-fields-Mobile-Safari/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/auth-Authentication-Flow-s-4800c-ion-errors-for-empty-fields-Mobile-Safari/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/auth-Authentication-Flow-s-4800c-ion-errors-for-empty-fields-Mobile-Safari/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|auth-Authentication-Flow-s-4800c-ion-errors-for-empty-fields-Mobile-Safari/test-failed-1.png]]
+
+[[ATTACHMENT|auth-Authentication-Flow-s-4800c-ion-errors-for-empty-fields-Mobile-Safari/video.webm]]
+
+[[ATTACHMENT|auth-Authentication-Flow-s-4800c-ion-errors-for-empty-fields-Mobile-Safari/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Authentication Flow › should show error for invalid credentials" classname="auth.spec.ts" time="31.989">
+<failure message="auth.spec.ts:21:3 should show error for invalid credentials" type="FAILURE">
+<![CDATA[  [Mobile Safari] › auth.spec.ts:21:3 › Authentication Flow › should show error for invalid credentials 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.fill: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for locator('input[type="email"]')
+
+
+      20 |
+      21 |   test('should show error for invalid credentials', async ({ page }) => {
+    > 22 |     await page.locator('input[type="email"]').fill('invalid@example.com');
+         |                                               ^
+      23 |     await page.locator('input[type="password"]').fill('wrongpassword');
+      24 |     await page.locator('button[type="submit"]').click();
+      25 |
+        at /workspaces/ClubManager/frontend/e2e/auth.spec.ts:22:47
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/auth-Authentication-Flow-s-c1b41-ror-for-invalid-credentials-Mobile-Safari/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/auth-Authentication-Flow-s-c1b41-ror-for-invalid-credentials-Mobile-Safari/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/auth-Authentication-Flow-s-c1b41-ror-for-invalid-credentials-Mobile-Safari/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|auth-Authentication-Flow-s-c1b41-ror-for-invalid-credentials-Mobile-Safari/test-failed-1.png]]
+
+[[ATTACHMENT|auth-Authentication-Flow-s-c1b41-ror-for-invalid-credentials-Mobile-Safari/video.webm]]
+
+[[ATTACHMENT|auth-Authentication-Flow-s-c1b41-ror-for-invalid-credentials-Mobile-Safari/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Authentication Flow › should login successfully with valid credentials" classname="auth.spec.ts" time="31.922">
+<failure message="auth.spec.ts:29:3 should login successfully with valid credentials" type="FAILURE">
+<![CDATA[  [Mobile Safari] › auth.spec.ts:29:3 › Authentication Flow › should login successfully with valid credentials 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.fill: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for locator('input[type="email"]')
+
+
+      44 |     });
+      45 |
+    > 46 |     await page.locator('input[type="email"]').fill('admin@example.com');
+         |                                               ^
+      47 |     await page.locator('input[type="password"]').fill('password123');
+      48 |     await page.locator('button[type="submit"]').click();
+      49 |
+        at /workspaces/ClubManager/frontend/e2e/auth.spec.ts:46:47
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/auth-Authentication-Flow-s-74377-ully-with-valid-credentials-Mobile-Safari/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/auth-Authentication-Flow-s-74377-ully-with-valid-credentials-Mobile-Safari/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/auth-Authentication-Flow-s-74377-ully-with-valid-credentials-Mobile-Safari/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|auth-Authentication-Flow-s-74377-ully-with-valid-credentials-Mobile-Safari/test-failed-1.png]]
+
+[[ATTACHMENT|auth-Authentication-Flow-s-74377-ully-with-valid-credentials-Mobile-Safari/video.webm]]
+
+[[ATTACHMENT|auth-Authentication-Flow-s-74377-ully-with-valid-credentials-Mobile-Safari/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Authentication Flow › should logout successfully" classname="auth.spec.ts" time="31.986">
+<failure message="auth.spec.ts:54:3 should logout successfully" type="FAILURE">
+<![CDATA[  [Mobile Safari] › auth.spec.ts:54:3 › Authentication Flow › should logout successfully ───────────
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for locator('[data-testid="logout-button"]')
+
+
+      65 |     
+      66 |     // Click logout button
+    > 67 |     await page.locator('[data-testid="logout-button"]').click();
+         |                                                         ^
+      68 |     
+      69 |     // Verificar redirecionamento para login
+      70 |     await expect(page).toHaveURL(/.*login/);
+        at /workspaces/ClubManager/frontend/e2e/auth.spec.ts:67:57
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/auth-Authentication-Flow-should-logout-successfully-Mobile-Safari/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/auth-Authentication-Flow-should-logout-successfully-Mobile-Safari/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/auth-Authentication-Flow-should-logout-successfully-Mobile-Safari/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|auth-Authentication-Flow-should-logout-successfully-Mobile-Safari/test-failed-1.png]]
+
+[[ATTACHMENT|auth-Authentication-Flow-should-logout-successfully-Mobile-Safari/video.webm]]
+
+[[ATTACHMENT|auth-Authentication-Flow-should-logout-successfully-Mobile-Safari/error-context.md]]
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="membros.spec.ts" timestamp="2026-01-23T14:37:04.019Z" hostname="Mobile Safari" tests="9" failures="9" skipped="0" time="5.17" errors="0">
+<testcase name="Membros Management › should display membros list" classname="membros.spec.ts" time="0.642">
+<failure message="membros.spec.ts:59:3 should display membros list" type="FAILURE">
+<![CDATA[  [Mobile Safari] › membros.spec.ts:59:3 › Membros Management › should display membros list ────────
+
+    Error: page.evaluate: SecurityError: The operation is insecure.
+
+      3 | // Helper para autenticação
+      4 | async function authenticate(page: Page) {
+    > 5 |   await page.evaluate(() => {
+        |              ^
+      6 |     localStorage.setItem('auth_token', 'mock-token-123');
+      7 |     localStorage.setItem('user', JSON.stringify({
+      8 |       id: 1,
+        at authenticate (/workspaces/ClubManager/frontend/e2e/membros.spec.ts:5:14)
+        at /workspaces/ClubManager/frontend/e2e/membros.spec.ts:18:11
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/membros-Membros-Management-should-display-membros-list-Mobile-Safari/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/membros-Membros-Management-should-display-membros-list-Mobile-Safari/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|membros-Membros-Management-should-display-membros-list-Mobile-Safari/test-failed-1.png]]
+
+[[ATTACHMENT|membros-Membros-Management-should-display-membros-list-Mobile-Safari/video.webm]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Membros Management › should filter membros by status" classname="membros.spec.ts" time="0.479">
+<failure message="membros.spec.ts:66:3 should filter membros by status" type="FAILURE">
+<![CDATA[  [Mobile Safari] › membros.spec.ts:66:3 › Membros Management › should filter membros by status ────
+
+    Error: page.evaluate: SecurityError: The operation is insecure.
+
+      3 | // Helper para autenticação
+      4 | async function authenticate(page: Page) {
+    > 5 |   await page.evaluate(() => {
+        |              ^
+      6 |     localStorage.setItem('auth_token', 'mock-token-123');
+      7 |     localStorage.setItem('user', JSON.stringify({
+      8 |       id: 1,
+        at authenticate (/workspaces/ClubManager/frontend/e2e/membros.spec.ts:5:14)
+        at /workspaces/ClubManager/frontend/e2e/membros.spec.ts:18:11
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/membros-Membros-Management-should-filter-membros-by-status-Mobile-Safari/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|membros-Membros-Management-should-filter-membros-by-status-Mobile-Safari/test-failed-1.png]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Membros Management › should search membros by name" classname="membros.spec.ts" time="0.585">
+<failure message="membros.spec.ts:91:3 should search membros by name" type="FAILURE">
+<![CDATA[  [Mobile Safari] › membros.spec.ts:91:3 › Membros Management › should search membros by name ──────
+
+    Error: page.evaluate: SecurityError: The operation is insecure.
+
+      3 | // Helper para autenticação
+      4 | async function authenticate(page: Page) {
+    > 5 |   await page.evaluate(() => {
+        |              ^
+      6 |     localStorage.setItem('auth_token', 'mock-token-123');
+      7 |     localStorage.setItem('user', JSON.stringify({
+      8 |       id: 1,
+        at authenticate (/workspaces/ClubManager/frontend/e2e/membros.spec.ts:5:14)
+        at /workspaces/ClubManager/frontend/e2e/membros.spec.ts:18:11
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/membros-Membros-Management-should-search-membros-by-name-Mobile-Safari/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/membros-Membros-Management-should-search-membros-by-name-Mobile-Safari/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|membros-Membros-Management-should-search-membros-by-name-Mobile-Safari/test-failed-1.png]]
+
+[[ATTACHMENT|membros-Membros-Management-should-search-membros-by-name-Mobile-Safari/video.webm]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Membros Management › should open create membro modal" classname="membros.spec.ts" time="0.466">
+<failure message="membros.spec.ts:98:3 should open create membro modal" type="FAILURE">
+<![CDATA[  [Mobile Safari] › membros.spec.ts:98:3 › Membros Management › should open create membro modal ────
+
+    Error: page.evaluate: SecurityError: The operation is insecure.
+
+      3 | // Helper para autenticação
+      4 | async function authenticate(page: Page) {
+    > 5 |   await page.evaluate(() => {
+        |              ^
+      6 |     localStorage.setItem('auth_token', 'mock-token-123');
+      7 |     localStorage.setItem('user', JSON.stringify({
+      8 |       id: 1,
+        at authenticate (/workspaces/ClubManager/frontend/e2e/membros.spec.ts:5:14)
+        at /workspaces/ClubManager/frontend/e2e/membros.spec.ts:18:11
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/membros-Membros-Management-should-open-create-membro-modal-Mobile-Safari/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|membros-Membros-Management-should-open-create-membro-modal-Mobile-Safari/test-failed-1.png]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Membros Management › should create new membro" classname="membros.spec.ts" time="0.658">
+<failure message="membros.spec.ts:106:3 should create new membro" type="FAILURE">
+<![CDATA[  [Mobile Safari] › membros.spec.ts:106:3 › Membros Management › should create new membro ──────────
+
+    Error: page.evaluate: SecurityError: The operation is insecure.
+
+      3 | // Helper para autenticação
+      4 | async function authenticate(page: Page) {
+    > 5 |   await page.evaluate(() => {
+        |              ^
+      6 |     localStorage.setItem('auth_token', 'mock-token-123');
+      7 |     localStorage.setItem('user', JSON.stringify({
+      8 |       id: 1,
+        at authenticate (/workspaces/ClubManager/frontend/e2e/membros.spec.ts:5:14)
+        at /workspaces/ClubManager/frontend/e2e/membros.spec.ts:18:11
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/membros-Membros-Management-should-create-new-membro-Mobile-Safari/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/membros-Membros-Management-should-create-new-membro-Mobile-Safari/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|membros-Membros-Management-should-create-new-membro-Mobile-Safari/test-failed-1.png]]
+
+[[ATTACHMENT|membros-Membros-Management-should-create-new-membro-Mobile-Safari/video.webm]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Membros Management › should view membro details" classname="membros.spec.ts" time="0.621">
+<failure message="membros.spec.ts:136:3 should view membro details" type="FAILURE">
+<![CDATA[  [Mobile Safari] › membros.spec.ts:136:3 › Membros Management › should view membro details ────────
+
+    Error: page.evaluate: SecurityError: The operation is insecure.
+
+      3 | // Helper para autenticação
+      4 | async function authenticate(page: Page) {
+    > 5 |   await page.evaluate(() => {
+        |              ^
+      6 |     localStorage.setItem('auth_token', 'mock-token-123');
+      7 |     localStorage.setItem('user', JSON.stringify({
+      8 |       id: 1,
+        at authenticate (/workspaces/ClubManager/frontend/e2e/membros.spec.ts:5:14)
+        at /workspaces/ClubManager/frontend/e2e/membros.spec.ts:18:11
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/membros-Membros-Management-should-view-membro-details-Mobile-Safari/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/membros-Membros-Management-should-view-membro-details-Mobile-Safari/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|membros-Membros-Management-should-view-membro-details-Mobile-Safari/test-failed-1.png]]
+
+[[ATTACHMENT|membros-Membros-Management-should-view-membro-details-Mobile-Safari/video.webm]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Membros Management › should edit membro" classname="membros.spec.ts" time="0.504">
+<failure message="membros.spec.ts:143:3 should edit membro" type="FAILURE">
+<![CDATA[  [Mobile Safari] › membros.spec.ts:143:3 › Membros Management › should edit membro ────────────────
+
+    Error: page.evaluate: SecurityError: The operation is insecure.
+
+      3 | // Helper para autenticação
+      4 | async function authenticate(page: Page) {
+    > 5 |   await page.evaluate(() => {
+        |              ^
+      6 |     localStorage.setItem('auth_token', 'mock-token-123');
+      7 |     localStorage.setItem('user', JSON.stringify({
+      8 |       id: 1,
+        at authenticate (/workspaces/ClubManager/frontend/e2e/membros.spec.ts:5:14)
+        at /workspaces/ClubManager/frontend/e2e/membros.spec.ts:18:11
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/membros-Membros-Management-should-edit-membro-Mobile-Safari/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|membros-Membros-Management-should-edit-membro-Mobile-Safari/test-failed-1.png]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Membros Management › should delete membro with confirmation" classname="membros.spec.ts" time="0.597">
+<failure message="membros.spec.ts:152:3 should delete membro with confirmation" type="FAILURE">
+<![CDATA[  [Mobile Safari] › membros.spec.ts:152:3 › Membros Management › should delete membro with confirmation 
+
+    Error: page.evaluate: SecurityError: The operation is insecure.
+
+      3 | // Helper para autenticação
+      4 | async function authenticate(page: Page) {
+    > 5 |   await page.evaluate(() => {
+        |              ^
+      6 |     localStorage.setItem('auth_token', 'mock-token-123');
+      7 |     localStorage.setItem('user', JSON.stringify({
+      8 |       id: 1,
+        at authenticate (/workspaces/ClubManager/frontend/e2e/membros.spec.ts:5:14)
+        at /workspaces/ClubManager/frontend/e2e/membros.spec.ts:18:11
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/membros-Membros-Management-32c45-te-membro-with-confirmation-Mobile-Safari/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/membros-Membros-Management-32c45-te-membro-with-confirmation-Mobile-Safari/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|membros-Membros-Management-32c45-te-membro-with-confirmation-Mobile-Safari/test-failed-1.png]]
+
+[[ATTACHMENT|membros-Membros-Management-32c45-te-membro-with-confirmation-Mobile-Safari/video.webm]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Membros Management › should paginate through membros" classname="membros.spec.ts" time="0.618">
+<failure message="membros.spec.ts:160:3 should paginate through membros" type="FAILURE">
+<![CDATA[  [Mobile Safari] › membros.spec.ts:160:3 › Membros Management › should paginate through membros ───
+
+    Error: page.evaluate: SecurityError: The operation is insecure.
+
+      3 | // Helper para autenticação
+      4 | async function authenticate(page: Page) {
+    > 5 |   await page.evaluate(() => {
+        |              ^
+      6 |     localStorage.setItem('auth_token', 'mock-token-123');
+      7 |     localStorage.setItem('user', JSON.stringify({
+      8 |       id: 1,
+        at authenticate (/workspaces/ClubManager/frontend/e2e/membros.spec.ts:5:14)
+        at /workspaces/ClubManager/frontend/e2e/membros.spec.ts:18:11
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/membros-Membros-Management-should-paginate-through-membros-Mobile-Safari/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/membros-Membros-Management-should-paginate-through-membros-Mobile-Safari/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|membros-Membros-Management-should-paginate-through-membros-Mobile-Safari/test-failed-1.png]]
+
+[[ATTACHMENT|membros-Membros-Management-should-paginate-through-membros-Mobile-Safari/video.webm]]
+]]>
+</system-out>
+</testcase>
+</testsuite>
+</testsuites>

@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { mainNav, settingsNav } from "./navConfig";
 import logo from "../assets/logo-bscn.png";
 
@@ -10,10 +10,19 @@ function initialsFromName(name: string) {
 }
 
 export default function Sidebar() {
+  const navigate = useNavigate();
   // depois ligas isto ao utilizador logado
   const userName = "Administrador";
   const userEmail = "admin@bscn.pt";
   const initials = initialsFromName(userName);
+
+  const logout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("auth_token");
+    localStorage.removeItem("active_club_id");
+    localStorage.removeItem("user");
+    navigate("/login");
+  };
 
   return (
     <aside className="spark-sidebar">
@@ -69,7 +78,7 @@ export default function Sidebar() {
           </div>
         </div>
 
-        <button className="spark-logout" type="button">
+        <button className="spark-logout" type="button" onClick={logout}>
           Sair
         </button>
       </div>

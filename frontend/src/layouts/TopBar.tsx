@@ -16,6 +16,9 @@ export default function TopBar() {
 
   const logout = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("auth_token");
+    localStorage.removeItem("active_club_id");
+    localStorage.removeItem("user");
     navigate("/login");
   };
 
