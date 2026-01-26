@@ -4,32 +4,19 @@ import { ChevronLeft, User, DollarSign, Activity } from "lucide-react";
 import { PersonalTab } from "./components/PersonalTab";
 import { FinancialTab } from "./components/FinancialTab";
 import { SportsTab } from "./components/SportsTab";
+
+import { mapMember } from "./mapper";
+import type { Member as MemberType } from "./mapper";
 import api from "../../lib/api";
 
-interface Member {
-  id: number;
-  nome: string;
-  email: string;
-  numero_socio?: string;
-  tipo_membro?: string;
-  estado: string;
-  activo: boolean;
-  data_nascimento?: string;
-  nif?: string;
-  morada?: string;
-  codigo_postal?: string;
-  localidade?: string;
-  pais?: string;
-  telefone?: string;
-  observacoes?: string;
-}
 
-type TabType = "personal" | "financial" | "sports";
+
 
 export function MemberProfile() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  const [member, setMember] = useState<Member | null>(null);
+  const [member, setMember] = useState<MemberType | null>(null);
+  type TabType = "personal" | "financial" | "sports";
   const [activeTab, setActiveTab] = useState<TabType>("personal");
   const [loading, setLoading] = useState(true);
 
@@ -37,13 +24,15 @@ export function MemberProfile() {
     if (id) {
       loadMember();
     }
-  }, [id]);
+      // Ignorar warning de dependência de loadMember, pois é estável
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [id]);
 
   const loadMember = async () => {
     try {
       setLoading(true);
       const response = await api.get(`/v2/membros/${id}`);
-      setMember(response.data.data);
+      setMember(mapMember(response.data.data));
     } catch (error) {
       console.error("Erro ao carregar membro:", error);
     } finally {
@@ -72,11 +61,8 @@ export function MemberProfile() {
   }
 
   const initials = member.nome
-    .split(" ")
-    .map((n) => n[0])
-    .join("")
-    .toUpperCase()
-    .substring(0, 2);
+    ? member.nome.split(" ").map((n) => n[0]).join("").toUpperCase().substring(0, 2)
+    : "??";
 
   return (
     <div className="page">
@@ -144,7 +130,17 @@ export function MemberProfile() {
         </div>
 
         <div style={{ marginTop: "24px" }}>
-          {activeTab === "personal" && <PersonalTab member={member} onUpdate={loadMember} />}
+          {activeTab === "personal" && <PersonalTab member={{
+            ...member,
+            data_nascimento: member.data_nascimento ?? undefined,
+            nif: member.nif ?? undefined,
+            morada: member.morada ?? undefined,
+            codigo_postal: member.codigo_postal ?? undefined,
+            localidade: member.localidade ?? undefined,
+            pais: member.pais ?? undefined,
+            telefone: member.telefone ?? undefined,
+            observacoes: member.observacoes ?? undefined,
+          }} onUpdate={loadMember} />}
           {activeTab === "sports" && <SportsTab memberId={member.id} />}
           {activeTab === "financial" && <FinancialTab memberId={member.id} />}
         </div>

@@ -1,19 +1,13 @@
-import { useState, useEffect } from "react";
+
+
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Plus, Search, Filter } from "lucide-react";
 import api from "../../lib/api";
+import { mapMember, extractMembersArray } from "./mapper";
+import type { Member } from "./mapper";
 
-interface Member {
-  id: number;
-  nome: string;
-  email: string;
-  numero_socio?: string;
-  tipo_membro?: string;
-  activo: boolean;
-  telefone?: string;
-}
-
-export function MembersList() {
+export const MembersList: React.FC = () => {
   const navigate = useNavigate();
   const [members, setMembers] = useState<Member[]>([]);
   const [loading, setLoading] = useState(true);
@@ -28,26 +22,12 @@ export function MembersList() {
     try {
       setLoading(true);
       setError(null);
-      
-      console.log("Iniciando carregamento de membros...");
       const response = await api.get("/v2/membros");
-      console.log("API Response:", response.data);
-      console.log("Members data:", response.data.data);
-      
-      // Verificar se response.data é array direto ou está em response.data.data
-      const membersData = Array.isArray(response.data) 
-        ? response.data 
-        : (response.data.data || []);
-      
-      console.log("Final members:", membersData);
-      console.log("Total de membros:", membersData.length);
-      
-      setMembers(membersData);
+      const apiMembers = extractMembersArray(response.data);
+      const mapped = apiMembers.map(mapMember);
+      setMembers(mapped);
     } catch (error: any) {
       console.error("Erro ao carregar membros:", error);
-      console.error("Error details:", error.response?.data);
-      
-      // Se for erro de autenticação, mostrar mensagem específica
       if (error.response?.status === 401) {
         setError("Não autenticado. Por favor faça login.");
       } else {
@@ -55,23 +35,11 @@ export function MembersList() {
       }
       setMembers([]);
     } finally {
-      console.log("Finalizando loading...");
       setLoading(false);
     }
   };
 
-  const filteredMembers = members.filter((member) => {
-    const searchLower = searchTerm.toLowerCase();
-    return (
-      member.nome?.toLowerCase().includes(searchLower) ||
-      member.email?.toLowerCase().includes(searchLower) ||
-      member.numero_socio?.toLowerCase().includes(searchLower) ||
-      false
-    );
-  });
-
-  const getInitials = (name: string) => {
-    if (!name) return "??";
+  const getInitials = (name: string): string => {
     return name
       .split(" ")
       .map((n) => n[0])
@@ -80,19 +48,16 @@ export function MembersList() {
       .substring(0, 2);
   };
 
-  return (
-    <div className="page">
-      <div className="page-header">
-        <div>
-          <h1 className="page-title">Membros</h1>
-          <p className="page-subtitle">Gerir todos os membros do clube</p>
-        </div>
-        <button className="btn primary" onClick={() => navigate("/membros/novo")}>
-          <Plus size={18} />
-          Novo Membro
-        </button>
-      </div>
+  const filteredMembers = members.filter((member) =>
+    searchTerm === ""
+      ? true
+      : member.nome?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        member.email?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        member.numero_socio?.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
+  return (
+    <>
       <div className="card" style={{ marginBottom: "16px" }}>
         <div className="flex justify-between items-center gap-3" style={{ flexWrap: "wrap" }}>
           <div style={{ position: "relative", flex: 1, maxWidth: "400px", minWidth: "250px" }}>
@@ -207,6 +172,6 @@ export function MembersList() {
           </span>
         </div>
       </div>
-    </div>
+    </>
   );
 }
