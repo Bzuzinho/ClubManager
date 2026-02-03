@@ -1,42 +1,38 @@
 name: Database Backup
+  backup:
+name: Database Backup
 
-on:
+        run: echo "Backup completed successfully"
   schedule:
     # Runs every day at 3 AM UTC
     - cron: '0 3 * * *'
   workflow_dispatch:
 
-jobs:
+
   backup:
     name: Backup Production Database
     runs-on: ubuntu-latest
     environment: production
-    
     steps:
       - uses: actions/checkout@v4
-
       - name: Backup Database via SSH
         uses: appleboy/ssh-action@v1.0.0
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          port: ${{ secrets.SSH_PORT || 22 }}
+          port: ${{ secrets.SSH_PORT }}
           script: |
             cd ${{ secrets.DEPLOY_PATH }}/backend
-            
             # Create backup
             php artisan backup:run --only-db
-            
             # Upload to S3
             php artisan backup:clean
-            
             # Notify if backup failed
             if [ $? -ne 0 ]; then
               echo "Backup failed!"
               exit 1
             fi
-
       - name: Verify Backup
         uses: appleboy/ssh-action@v1.0.0
         with:
@@ -46,10 +42,8 @@ jobs:
           port: ${{ secrets.SSH_PORT || 22 }}
           script: |
             cd ${{ secrets.DEPLOY_PATH }}/backend
-            
             # Check latest backup exists
             php artisan backup:list
-
       - name: Notify on Failure
         if: failure()
         uses: 8398a7/action-slack@v3
@@ -57,7 +51,7 @@ jobs:
           status: ${{ job.status }}
           text: 'Database backup failed!'
           webhook_url: ${{ secrets.SLACK_WEBHOOK }}
-
       - name: Notify on Success
         if: success()
         run: echo "Backup completed successfully"
+          status: ${{ job.status }}
