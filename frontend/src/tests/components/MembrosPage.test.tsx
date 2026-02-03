@@ -1,7 +1,8 @@
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import React from 'react';
+import { screen, waitFor } from '@testing-library/react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import axios from 'axios';
-import { renderWithRouter, mockMembro, mockPaginatedResponse, setupAuthenticatedAPI } from '../tests/testUtils';
+import { renderWithRouter, mockMembro, mockPaginatedResponse, setupAuthenticatedAPI } from '../testUtils';
 
 // Mock do componente de membros (exemplo - ajustar conforme implementação real)
 const MembrosPage = () => {
