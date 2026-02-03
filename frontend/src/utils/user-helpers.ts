@@ -1,4 +1,4 @@
-import type { User, PartialUser } from '../types';
+import type { User, PartialUser } from "@/types";
 
 export function generateMemberNumber(existingUsers: User[]): string {
   const currentYear = new Date().getFullYear();
@@ -87,6 +87,7 @@ export function getMemberTypeLabel(type: User['tipo_membro'][0]): string {
     treinador: 'Treinador',
     dirigente: 'Dirigente',
     funcionario: 'Funcionário',
+    socio: 'Sócio',
   };
   return fallbackLabels[type] || type;
 }

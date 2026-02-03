@@ -5,4 +5,4 @@
  * import { useIsMobile } from '@/hooks';
  */
 
-export * from './use-mobile';
+export { useIsMobile } from './use-mobile';
