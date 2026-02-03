@@ -35,9 +35,7 @@ return new class extends Migration
             if (!Schema::hasColumn('eventos', 'hora_inicio')) {
                 $table->time('hora_inicio')->nullable()->after('data_inicio');
             }
-            if (!Schema::hasColumn('eventos', 'data_fim')) {
-                $table->date('data_fim')->nullable()->after('hora_inicio');
-            }
+            // Note: data_fim already exists as dateTime, so we don't add it again
             if (!Schema::hasColumn('eventos', 'hora_fim')) {
                 $table->time('hora_fim')->nullable()->after('data_fim');
             }
@@ -240,13 +238,14 @@ return new class extends Migration
         // Remove fields from eventos (only if they were added by this migration)
         Schema::table('eventos', function (Blueprint $table) {
             $columns = [
-                'hora_inicio', 'data_fim', 'hora_fim', 'local_detalhes', 'tipo_piscina',
+                'hora_inicio', 'hora_fim', 'local_detalhes', 'tipo_piscina',
                 'visibilidade', 'escaloes_elegiveis', 'transporte_necessario', 'transporte_detalhes',
                 'hora_partida', 'local_partida', 'taxa_inscricao', 'custo_inscricao_por_prova',
                 'custo_inscricao_por_salto', 'custo_inscricao_estafeta', 'observacoes',
                 'convocatoria_ficheiro', 'regulamento_ficheiro', 'criado_por', 'recorrente',
                 'recorrencia_data_inicio', 'recorrencia_data_fim', 'recorrencia_dias_semana', 'evento_pai_id'
             ];
+            // Note: data_fim is NOT removed as it existed before this migration
             
             foreach ($columns as $column) {
                 if (Schema::hasColumn('eventos', $column)) {
