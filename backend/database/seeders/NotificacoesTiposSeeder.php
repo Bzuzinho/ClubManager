@@ -33,7 +33,7 @@ class NotificacoesTiposSeeder extends Seeder
         ];
 
         foreach ($tipos as $tipo) {
-            NotificacaoTipo::create($tipo);
+            NotificacaoTipo::firstOrCreate(['slug' => $tipo['slug']], $tipo);
         }
     }
 }

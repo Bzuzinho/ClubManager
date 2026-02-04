@@ -16,6 +16,8 @@ class DatabaseSeeder extends Seeder
             PermissionsSeeder::class,
             NotificacoesTiposSeeder::class,
             ConfiguracaoClubSeeder::class,
+            AdminUserSeeder::class,
+            QuickStartSeeder::class,
         ]);
     }
 }

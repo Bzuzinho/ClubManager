@@ -97,7 +97,8 @@ return [
             'search_path' => 'public',
             'sslmode' => env('DB_SSLMODE', 'prefer'),
             'options' => [
-                \PDO::ATTR_EMULATE_PREPARES => true,
+                \PDO::ATTR_EMULATE_PREPARES => false,
+                \PDO::ATTR_STRINGIFY_FETCHES => false,
             ],
         ],
 

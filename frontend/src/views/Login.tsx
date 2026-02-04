@@ -11,7 +11,7 @@ export default function Login() {
     setLoading(true);
     setError(null);
     try {
-      const res = await api.post("/api/login", { email, password });
+      const res = await api.post("/login", { email, password });
       
       // Guardar token e dados do utilizador
       if (res.data.token) {

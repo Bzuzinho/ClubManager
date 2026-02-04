@@ -10,13 +10,27 @@ class AdminUserSeeder extends Seeder
 {
     public function run(): void
     {
-        User::updateOrCreate(
+        $user = User::updateOrCreate(
             ['email' => 'admin@admin.pt'],
             [
                 'name' => 'Admin',
                 'password' => Hash::make('password'),
-                'role' => 'admin',
             ]
         );
+
+        // Assign admin role
+        $user->assignRole('admin');
+
+        // Associar ao clube BSCN
+        $club = \App\Models\Club::where('abreviatura', 'BSCN')->first();
+        if ($club) {
+            \App\Models\ClubUser::firstOrCreate([
+                'club_id' => $club->id,
+                'user_id' => $user->id,
+            ], [
+                'role_no_clube' => 'admin',
+                'ativo' => true,
+            ]);
+        }
     }
 }

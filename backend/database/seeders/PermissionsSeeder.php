@@ -29,7 +29,7 @@ class PermissionsSeeder extends Seeder
         $permissions = [];
         foreach ($modules as $module => $actions) {
             foreach ($actions as $action) {
-                $permission = Permission::create([
+                $permission = Permission::firstOrCreate([
                     'name' => "{$module}.{$action}",
                     'guard_name' => 'api'
                 ]);
@@ -38,10 +38,10 @@ class PermissionsSeeder extends Seeder
         }
 
         // Criar roles com guard 'api'
-        $admin = Role::create(['name' => 'admin', 'guard_name' => 'api']);
+        $admin = Role::firstOrCreate(['name' => 'admin', 'guard_name' => 'api']);
         $admin->givePermissionTo(Permission::all());
 
-        $secretaria = Role::create(['name' => 'secretaria', 'guard_name' => 'api']);
+        $secretaria = Role::firstOrCreate(['name' => 'secretaria', 'guard_name' => 'api']);
         $secretaria->givePermissionTo([
             $permissions['membros.view'],
             $permissions['membros.create'],
@@ -53,7 +53,7 @@ class PermissionsSeeder extends Seeder
             $permissions['dashboard.view'],
         ]);
 
-        $treinador = Role::create(['name' => 'treinador', 'guard_name' => 'api']);
+        $treinador = Role::firstOrCreate(['name' => 'treinador', 'guard_name' => 'api']);
         $treinador->givePermissionTo([
             $permissions['membros.view'],
             $permissions['desportivo.view'],
@@ -66,7 +66,7 @@ class PermissionsSeeder extends Seeder
             $permissions['dashboard.view'],
         ]);
 
-        $financeiro = Role::create(['name' => 'financeiro', 'guard_name' => 'api']);
+        $financeiro = Role::firstOrCreate(['name' => 'financeiro', 'guard_name' => 'api']);
         $financeiro->givePermissionTo([
             $permissions['membros.view'],
             $permissions['financeiro.view'],
@@ -76,7 +76,7 @@ class PermissionsSeeder extends Seeder
             $permissions['dashboard.view'],
         ]);
 
-        $inventario = Role::create(['name' => 'inventario', 'guard_name' => 'api']);
+        $inventario = Role::firstOrCreate(['name' => 'inventario', 'guard_name' => 'api']);
         $inventario->givePermissionTo([
             $permissions['inventario.view'],
             $permissions['inventario.create'],
@@ -85,7 +85,7 @@ class PermissionsSeeder extends Seeder
             $permissions['dashboard.view'],
         ]);
 
-        $marketing = Role::create(['name' => 'marketing', 'guard_name' => 'api']);
+        $marketing = Role::firstOrCreate(['name' => 'marketing', 'guard_name' => 'api']);
         $marketing->givePermissionTo([
             $permissions['membros.view'],
             $permissions['comunicacao.view'],
